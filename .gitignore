@@ -19,6 +19,7 @@
 .idea/kotlinScripting.xml
 .idea/compiler.xml
 .idea/shelf
+.idea/vcs.xml
 
 # Gradle files
 .gradle
