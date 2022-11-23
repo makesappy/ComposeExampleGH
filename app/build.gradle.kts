@@ -1,4 +1,5 @@
 @file:Suppress("UnstableApiUsage")
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -38,7 +39,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures.apply {
         compose = true
@@ -52,6 +53,20 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_11.toString()
+            freeCompilerArgs = listOf(
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+                "-Xopt-in=kotlin.time.ExperimentalTime",
+                "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            )
         }
     }
 }

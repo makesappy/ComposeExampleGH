@@ -1,15 +1,52 @@
+# Intellij files
 *.iml
+*.iws
+*.ipr
+
+.idea/caches
+.idea/libraries
+.idea/modules
+.idea/modules.xml
+.idea/deploymentTargetDropDown.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/.name
+.idea/kotlinc.xml
+.idea/kotlinScripting.xml
+.idea/compiler.xml
+.idea/shelf
+
+# Gradle files
 .gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
 local.properties
+**/build
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Log Files
+*.log
+
+# Android Studio captures folder
+**/captures
+
+# External native build folder generated in Android Studio 2.2 and later
+**/.externalNativeBuild
+**/.cxx
+
+# Windows specific files
+Thumbs.db
+thumbs.db
+
+# Linux specific files
+.directory
+
+# Mac specific files
+.DS_Store
