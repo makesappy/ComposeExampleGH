@@ -19,6 +19,6 @@ repositories {
 
 dependencies {
     implementation("com.android.tools.build:gradle:7.3.0")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.21")
     implementation("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:10.5.1")
 }

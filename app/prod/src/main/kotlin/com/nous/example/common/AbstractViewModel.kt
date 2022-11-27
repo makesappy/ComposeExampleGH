@@ -15,21 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 
 /**
- * Base class for all view models.
- *
- * View model observes changes in application state using use cases that are injected in its constructor. It formats domain models as
- * user-friendly data (consisting mainly of primitive and primitive-like types), and emits these updates as view states. All the
- * heavy-lifting should be done by the view model, because the view layer must be kept as simple and dumb as possible. The view simply
- * renders each state update, containing no interesting logic whatsoever.
- *
- * Be careful not to push too much business or application logic into view model. Calling several use cases every time in a reaction to a
- * single user event is usually a smell - extract a new use case aggregating and hiding the other use cases.
- *
- * This implementation extends Jetpack [ViewModel], so it has access to Android's `viewModelScope`, but the subclasses should otherwise
- * be as Android-independent as possible (especially no direct reference to `Context` or other framework code is allowed). View models
- * should also be UI-toolkit independent.
- *
- * Make sure to use [launchWhenActive] instead of [viewModelScope.launch] to keep
+ * Make sure to use [launchWhenActive] instead of [viewModelScope.launch]
  *
  * @param S State type which the view model emits. Must extend [AbstractViewModel.State] and must be a data class.
  * @param initialState Mandatory initial state that the view model emits.
@@ -107,22 +93,9 @@ abstract class AbstractViewModel<S : AbstractViewModel.State>(initialState: S) :
         /**
          * Unified State Error object
          * @param type Error of [Type] type
-         * @param stackId Unique stack id
-         * @param dateTime Formatted date time string.
-         * @param appVersion Application version
-         * @param customTitle Custom error title. Is used only when [type] is [Type.Custom]
-         * @param customDescription Custom error description. Is used only when [type] is [Type.Custom]
-         * @param customPrimaryButtonTitle Custom on error primary button. Is used only when [type] is [Type.Custom]
-         * @param customSecondaryButtonTitle Custom on error secondary button. Is used only when [type] is [Type.Custom]
          */
         data class Error(
-            val type: Type,
-            val dateTime: String,
-            val appVersion: String,
-            val customTitle: String = "",
-            val customDescription: String = "",
-            val customPrimaryButtonTitle: String = "",
-            val customSecondaryButtonTitle: String? = null,
+            val type: Type
         ) {
             enum class Type {
                 General,

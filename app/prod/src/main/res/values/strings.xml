@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ExampleApp</string>
+    <string name="global_ok">OK</string>
+    <string name="global_loading">Loading…</string>
+    <string name="error_no_internet_header">No internet</string>
+    <string name="error_no_internet_body">No internet connection found, please check your network connection and try again</string>
+    <string name="error_timeout_header">Connection timeout</string>
+    <string name="error_timeout_body">The server is taking too long to respond, please try again later</string>
+    <string name="error_general_header">Unexpected issue</string>
+    <string name="error_general_body">Something went wrong, please try again later</string>
 </resources>

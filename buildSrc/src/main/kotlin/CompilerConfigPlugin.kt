@@ -35,6 +35,7 @@ internal class CompilerConfigPlugin : Plugin<Project> by local plugin {
                 "-Xopt-in=androidx.compose.animation.ExperimentalAnimationApi",
                 "-Xopt-in=androidx.compose.material3.ExperimentalMaterial3Api",
                 "-Xopt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+                "-Xopt-in=androidx.compose.ui.text.ExperimentalTextApi",
                 "-Xopt-in=kotlin.time.ExperimentalTime",
                 "-Xopt-in=kotlinx.coroutines.FlowPreview"
             )
