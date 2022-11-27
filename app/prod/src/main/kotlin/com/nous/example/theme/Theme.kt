@@ -1,70 +1,120 @@
 package com.nous.example.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorScheme = darkColorScheme(
-        primary = Purple80,
-        secondary = PurpleGrey80,
-        tertiary = Pink80
+    primary = Color(0xff124559),
+    secondary = Color(0xff0A1D2F),
+    tertiary = Color(0xffF4F9FB),
+    background = Color(0xFF0A1D2F),
+    surface = Color(0xFF0A1D2F),
+    onPrimary = Color(0xFF0A1D2F),
+    onSecondary = Color(0xFF0A1D2F),
+    onTertiary = Color(0xFF0A1D2F),
+    onBackground = Color(0xffF4F9FB),
+    onSurface = Color(0xffF4F9FB),
 )
 
 private val LightColorScheme = lightColorScheme(
-        primary = Purple40,
-        secondary = PurpleGrey40,
-        tertiary = Pink40
-
-        /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Color(0xff124559),
+    secondary = Color(0xffF4F9FB),
+    tertiary = Color(0xff0A1D2F),
+    background = Color(0xffF4F9FB),
+    surface = Color(0xffF4F9FB),
+    onPrimary = Color(0xffF4F9FB),
+    onSecondary = Color(0xffF4F9FB),
+    onTertiary = Color(0xffF4F9FB),
+    onBackground = Color(0xFF0A1D2F),
+    onSurface = Color(0xFF0A1D2F),
 )
 
 @Composable
-fun ExampleAppTheme(
-        darkTheme: Boolean = isSystemInDarkTheme(),
-        // Dynamic color is available on Android 12+
-        dynamicColor: Boolean = true,
-        content: @Composable () -> Unit
+fun CustomTheme(
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+    CustomTheme.isThemeInDarkMode = useDarkTheme
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+    ProvideColorsDimensionsAndElevations(useDarkTheme) {
+        ProvideRipple(CustomTheme.colors.surfacePrimary) {
+            ProvideColorAwareTypography {
+                InitializeStatusBar(useDarkTheme)
+                content()
+            }
         }
     }
+}
 
-    MaterialTheme(
-            colorScheme = colorScheme,
-            typography = Typography,
-            content = content
+@Composable
+private fun InitializeStatusBar(useDarkTheme: Boolean) {
+    val systemUiController = rememberSystemUiController()
+
+    SideEffect {
+        systemUiController.setStatusBarColor(if (useDarkTheme) Color.Companion.Black else Color.White)
+    }
+}
+
+@Composable
+private fun ProvideColorsDimensionsAndElevations(
+    useDarkTheme: Boolean,
+    content: @Composable () -> Unit
+) {
+    val colors = if (useDarkTheme) customDarkColors() else customLightColors()
+    val elevations = if (useDarkTheme) customDarkElevations() else customLightElevations()
+
+    CompositionLocalProvider(
+        LocalCustomDimensions provides CustomTheme.dimensions,
+        LocalCustomElevations provides elevations,
+        LocalCustomColors provides colors
+    ) {
+        content()
+    }
+}
+
+@Composable
+private fun ProvideColorAwareTypography(content: @Composable () -> Unit) {
+    val typography = customColorAwareTypography(
+        textPrimary = CustomTheme.colors.textPrimary,
+        textSecondary = CustomTheme.colors.textSecondary,
     )
+
+    CompositionLocalProvider(
+        LocalCustomTypography provides typography
+    ) {
+        content()
+    }
+}
+
+object CustomTheme {
+
+    val typography: CustomTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalCustomTypography.current
+
+    val dimensions: CustomDimensions
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalCustomDimensions.current
+
+    val elevations: CustomElevations
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalCustomElevations.current
+
+    val colors: CustomSemanticColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalCustomColors.current
+
+    var isThemeInDarkMode: Boolean = false
+        internal set
 }

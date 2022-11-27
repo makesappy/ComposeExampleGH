@@ -8,7 +8,7 @@ object gradleDependencies {
         const val composeCompiler = "1.3.2"
         const val compose = "1.3.1"
         internal const val coroutines = "1.6.4"
-        internal const val koin = "3.3.0"
+        internal const val koin = "3.2.0"
         internal const val mockk = "1.12.4"
         internal const val retrofit = "2.9.0"
         internal const val room = "2.5.0-beta02"
@@ -30,6 +30,10 @@ object gradleDependencies {
             val browser = "androidx.browser:browser" version "1.4.0"
         }
 
+        object theme {
+            val googleFonts = "androidx.compose.ui:ui-text-google-fonts:1.3.1"
+        }
+
         object debug {
             val leakCanary = "com.squareup.leakcanary:leakcanary-android" version "2.10"
         }
@@ -43,6 +47,7 @@ object gradleDependencies {
         }
 
         object kotlin {
+            const val version = "1.7.21"
             object coroutines {
                 val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android" version versions.coroutines
                 val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core" version versions.coroutines
@@ -50,7 +55,7 @@ object gradleDependencies {
                 val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test" version versions.coroutines
             }
 
-            val reflect = "org.jetbrains.kotlin:kotlin-reflect" version "1.6.21"
+            val reflect = "org.jetbrains.kotlin:kotlin-reflect" version version
         }
 
         object networking {
@@ -141,7 +146,6 @@ object gradleDependencies {
                 internal val animation = "androidx.compose.animation:animation" version versions.compose
                 internal val material3 = "androidx.compose.material3:material3" version "1.0.1"
                 internal val constraintLayout = "androidx.constraintlayout:constraintlayout-compose" version "1.0.0"
-                internal val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh" version versions.accompanist
 
                 val activity = "androidx.activity:activity-compose" version "1.6.1"
                 val navigation = "androidx.navigation:navigation-compose" version "2.5.0"
@@ -149,7 +153,9 @@ object gradleDependencies {
 
             object accompanist {
                 val pager = "com.google.accompanist:accompanist-pager" version versions.accompanist
+                val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh" version versions.accompanist
                 val placeholder = "com.google.accompanist:accompanist-placeholder-material" version versions.accompanist
+                val systemUiController = "com.google.accompanist:accompanist-systemuicontroller" version versions.accompanist
             }
 
             object customView {
@@ -216,7 +222,7 @@ object gradleDependencies {
                     libs.ui.compose.animation,
                     libs.ui.compose.material3,
                     libs.ui.compose.constraintLayout,
-                    libs.ui.compose.swipeRefresh,
+                    libs.ui.accompanist.swipeRefresh,
                     libs.ui.customView.customView,
                     libs.ui.customView.customViewPoolingContainer,
                 )

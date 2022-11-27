@@ -20,6 +20,8 @@ dependencies {
     implementation(gradleDependencies.libs.bundles.ui.compose)
     implementation(gradleDependencies.libs.licences.aboutLibrariesCore)
     implementation(gradleDependencies.libs.licences.aboutLibrariesCompose)
+    implementation(gradleDependencies.libs.theme.googleFonts)
+    implementation(gradleDependencies.libs.ui.accompanist.systemUiController)
 
     debugImplementation(gradleDependencies.libs.debug.leakCanary)
 
