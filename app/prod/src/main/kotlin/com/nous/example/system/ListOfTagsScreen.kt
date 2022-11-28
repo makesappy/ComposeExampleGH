@@ -12,7 +12,7 @@ internal fun ListOfTagsScreen() {
 @Composable
 private fun ListOfTagsScreenImpl() {
     Scaffold {
-
+        
     }
 }
 

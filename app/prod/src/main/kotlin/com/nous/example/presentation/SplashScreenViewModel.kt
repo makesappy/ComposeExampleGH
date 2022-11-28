@@ -12,9 +12,9 @@ class SplashScreenViewModel(
 ) : AbstractViewModel<SplashScreenViewModel.State>(State()) {
     fun onInitialized() {
         launchWhenActive {
+            setInitialized()
             // give it some time to show splash
             delay(1000)
-            setInitialized()
             openHomeScreen()
             state = state.copy(initialized = true)
         }
