@@ -47,7 +47,7 @@ object gradleDependencies {
         }
 
         object kotlin {
-            const val version = "1.7.21"
+            const val version = "1.7.20"
             object coroutines {
                 val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android" version versions.coroutines
                 val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core" version versions.coroutines

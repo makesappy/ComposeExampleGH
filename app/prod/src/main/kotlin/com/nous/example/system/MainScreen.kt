@@ -4,13 +4,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.nous.example.common.ContentOrErrorEffect
 import com.nous.example.components.LoadingDialog
 import com.nous.example.presentation.MainViewModel
-import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -18,21 +16,11 @@ import org.koin.androidx.compose.getViewModel
 internal fun MainScreen() {
     val viewModel = getViewModel<MainViewModel>()
 
-    MainScreenImpl(
-        viewModel = viewModel,
-        onNavigationEventConsumed = viewModel::onNavigationEventConsumed,
-        onWarningDialogDismiss = viewModel::onWarningDialogDismiss,
-        onOverlayErrorDismiss = viewModel::onOverlayErrorDismiss
-    )
+    MainScreenImpl(viewModel = viewModel)
 }
 
 @Composable
-private fun MainScreenImpl(
-    viewModel: MainViewModel,
-    onNavigationEventConsumed: () -> Unit,
-    onWarningDialogDismiss: () -> Unit,
-    onOverlayErrorDismiss: () -> Unit
-) {
+private fun MainScreenImpl(viewModel: MainViewModel) {
     val state = viewModel.states.collectAsState().value
 
     CustomTheme {
@@ -41,17 +29,14 @@ private fun MainScreenImpl(
         NavigationEffect(
             navController = navController,
             viewModel = viewModel,
-            onNavigationEventConsumed = onNavigationEventConsumed
+            onNavigationEventConsumed = viewModel::onNavigationEventConsumed
         )
 
-        WarningDialogEffect(state = state, onDialogDismiss = onWarningDialogDismiss)
-
         ContentOrErrorEffect(
-            error = state.overlayErrorState?.error,
-            onErrorPrimaryButtonClick = { onOverlayErrorDismiss() }) {
+            error = state.error, onErrorPrimaryButtonClick = viewModel::onOverlayErrorDismiss
+        ) {
             Screens(
-                navController = navController,
-                modifier = Modifier.fillMaxSize()
+                navController = navController, modifier = Modifier.fillMaxSize()
             )
         }
         if (state.loadingState.isVisible) {
@@ -60,23 +45,8 @@ private fun MainScreenImpl(
     }
 }
 
-@Composable
-private fun WarningDialogEffect(
-    state: MainViewModel.State,
-    onDialogDismiss: () -> Unit
-) {
-    state.warningDataState?.let { warningData ->
-        CustomAlertDialog(
-            title = warningData.title,
-            text = warningData.description,
-            onDismiss = onDialogDismiss,
-            positiveButtonText = stringResource(id = R.string.global_ok)
-        )
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
-fun MainScreenPreview() {
+private fun MainScreenPreview() {
     MainScreen()
 }

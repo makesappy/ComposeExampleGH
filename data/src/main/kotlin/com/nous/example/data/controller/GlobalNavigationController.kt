@@ -19,10 +19,13 @@ internal class GlobalNavigationController : MainNavigationController {
     override val navigationEvent = _navigationEvent.asSharedFlow()
 
     override fun goBack() = goTo(BackNavigationEvent)
-    override fun goToInitial() = goTo(ForwardNavigationEvent(Route.Initial, clearBackStack = true))
-    
-    private fun goTo(route: Route) = goTo(ForwardNavigationEvent(route))
+    override fun goToHome() = goTo(Route.Home)
+    override fun goToListOfTags() = goTo(Route.ListOfTags)
+    override fun goToImg() = goTo(Route.Img)
+    override fun goToGif() = goTo(Route.Gif)
+    override fun goToTextToSay() = goTo(Route.TextToSay)
 
+    private fun goTo(route: Route) = goTo(ForwardNavigationEvent(route))
     private fun goTo(navigationEvent: NavigationEvent) {
         _navigationEvent.tryEmit(navigationEvent)
     }

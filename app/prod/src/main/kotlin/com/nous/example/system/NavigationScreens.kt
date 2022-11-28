@@ -10,12 +10,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.nous.example.domain.model.BackNavigationEvent
 import com.nous.example.domain.model.ForwardNavigationEvent
-import com.nous.example.domain.model.PopUpNavigationEvent
+import com.nous.example.domain.model.PopUpTillNavigationEvent
+import com.nous.example.domain.model.Route
 import com.nous.example.domain.model.Route.Companion.Initial
 import com.nous.example.presentation.MainViewModel
 
 @Composable
-fun Screens(
+internal fun Screens(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -24,12 +25,17 @@ fun Screens(
         startDestination = Initial(),
         modifier = modifier
     ) {
-//        composable(Home()) { HomeScreen() }
+        composable(Route.Splash()) { SplashScreen() }
+        composable(Route.Home()) { HomeScreen() }
+        composable(Route.ListOfTags()) { ListOfTagsScreen() }
+        composable(Route.Img()) { ImgScreen() }
+        composable(Route.Gif()) { GifScreen() }
+        composable(Route.TextToSay()) { TextToSayScreen() }
     }
 }
 
 @Composable
-fun NavigationEffect(
+internal fun NavigationEffect(
     navController: NavHostController,
     viewModel: MainViewModel,
     onNavigationEventConsumed: () -> Unit
@@ -43,7 +49,7 @@ fun NavigationEffect(
                 navController.navigateUp()
                 onNavigationEventConsumed()
             }
-            is PopUpNavigationEvent -> {
+            is PopUpTillNavigationEvent -> {
                 if (navController.currentDestination?.route != navigationEvent.route()) {
                     navController.popBackStack(navigationEvent.route(), navigationEvent.inclusive)
                 }
