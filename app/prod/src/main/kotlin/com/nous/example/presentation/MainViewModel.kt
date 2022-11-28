@@ -1,35 +1,43 @@
 package com.nous.example.presentation
 
 import com.nous.example.common.AbstractViewModel
-import com.nous.example.domain.model.ForwardNavigationEvent
-import com.nous.example.domain.model.NavigationEvent
-import com.nous.example.domain.model.Route
-import com.nous.example.domain.model.ThemeType
+import com.nous.example.domain.model.*
+import com.nous.example.domain.usecase.ObserveNavigationEventUseCase
+import com.nous.example.domain.usecase.ObserveOverlayErrorUseCase
+import com.nous.example.domain.usecase.invoke
 
-class MainViewModel : AbstractViewModel<MainViewModel.State>(State()) {
+internal class MainViewModel(
+    private val observeNavigationEvents: ObserveNavigationEventUseCase,
+    private val observeError: ObserveOverlayErrorUseCase
+) : AbstractViewModel<MainViewModel.State>(State()) {
 
-    fun onNavigationEventConsumed() {}
-    fun onWarningDialogDismiss() {}
-    fun onOverlayErrorDismiss() {}
+    init {
+        launchWhenActive {
+            observeNavigationEvents().collect {
+                state = state.copy(navigationEvent = it)
+            }
+        }
+        launchWhenActive {
+            observeError().collect {
+                state = state.copy(error = it)
+            }
+        }
+    }
+
+    fun onNavigationEventConsumed() {
+        state = state.copy(navigationEvent = null)
+    }
+
+    fun onOverlayErrorDismiss() {
+        state = state.copy(error = null)
+    }
 
     data class State(
         val navigationEvent: NavigationEvent? = ForwardNavigationEvent(Route.Initial),
         val themeType: ThemeType = ThemeType.Automatic,
-        val warningDataState: WarningDataState? = null,
-        val overlayErrorState: OverlayErrorState? = null,
+        val error: Data.Error? = null,
         val loadingState: LoadingState = LoadingState()
     ) : AbstractViewModel.State {
-
-        data class WarningDataState(
-            val title: String,
-            val description: String,
-            val onDialogDismiss: () -> Unit
-        )
-
-        data class OverlayErrorState(
-            val error: AbstractViewModel.State.Error,
-            val onErrorDismiss: () -> Unit
-        )
 
         data class LoadingState(val message: String? = null, val isVisible: Boolean = false)
 

@@ -4,11 +4,12 @@ import androidx.compose.runtime.Composable
 import com.nous.example.components.GeneralErrorView
 import com.nous.example.components.MissingInternetErrorView
 import com.nous.example.components.TimeoutErrorView
+import com.nous.example.domain.model.Data
 
 @Composable
 fun ContentOrErrorEffect(
-    error: AbstractViewModel.State.Error?,
-    onErrorPrimaryButtonClick: (AbstractViewModel.State.Error.Type) -> Unit,
+    error: Data.Error?,
+    onErrorPrimaryButtonClick: () -> Unit,
     content: @Composable () -> Unit = {}
 ) {
     if (error != null) {
@@ -19,18 +20,18 @@ fun ContentOrErrorEffect(
 }
 
 @Composable
-fun AbstractViewModel.State.Error.Render(
-    onErrorPrimaryButtonClick: (AbstractViewModel.State.Error.Type) -> Unit,
+fun Data.Error.Render(
+    onErrorPrimaryButtonClick: () -> Unit,
 ) {
     when (type) {
-        AbstractViewModel.State.Error.Type.General -> GeneralErrorView(
-            onButtonClick = { onErrorPrimaryButtonClick(AbstractViewModel.State.Error.Type.General) }
+        Data.Error.Type.General -> GeneralErrorView(
+            onButtonClick = { onErrorPrimaryButtonClick() }
         )
-        AbstractViewModel.State.Error.Type.MissingInternet -> MissingInternetErrorView(
-            onButtonClick = { onErrorPrimaryButtonClick(AbstractViewModel.State.Error.Type.MissingInternet) }
+        Data.Error.Type.MissingInternet -> MissingInternetErrorView(
+            onButtonClick = { onErrorPrimaryButtonClick() }
         )
-        AbstractViewModel.State.Error.Type.Timeout -> TimeoutErrorView(
-            onButtonClick = { onErrorPrimaryButtonClick(AbstractViewModel.State.Error.Type.Timeout) }
+        Data.Error.Type.Timeout -> TimeoutErrorView(
+            onButtonClick = { onErrorPrimaryButtonClick() }
         )
     }
 }

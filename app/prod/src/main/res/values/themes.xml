@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="CustomTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">#FFFFFF</item>
 
-    <style name="Theme.ExampleApp" parent="android:Theme.Material.Light.NoActionBar" />
+    </style>
+
+    <style name="Theme.ExampleApp.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
+        <item name="windowSplashScreenBackground">@color/quaternary</item>
+        <item name="postSplashScreenTheme">@style/CustomTheme</item>
+    </style>
 </resources>

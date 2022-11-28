@@ -5,6 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainNavigationController {
     val navigationEvent: Flow<NavigationEvent>
-    fun goToInitial()
+    fun goToHome()
+    fun goToListOfTags()
+    fun goToImg()
+    fun goToGif()
+    fun goToTextToSay()
     fun goBack()
 }

@@ -1,6 +1,5 @@
 package com.nous.example.domain.usecase
 
-import com.nous.example.domain.SynchronousUseCase
 import com.nous.example.domain.controller.InitializerController
 
 class SetInitializedUseCase(

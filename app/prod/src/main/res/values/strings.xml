@@ -8,4 +8,10 @@
     <string name="error_timeout_body">The server is taking too long to respond, please try again later</string>
     <string name="error_general_header">Unexpected issue</string>
     <string name="error_general_body">Something went wrong, please try again later</string>
+    <string name="error_app_version">App Version: %s</string>
+    <string name="list_of_tags_title">List of cat tags</string>
+    <string name="random_img_title">Random cat image</string>
+    <string name="random_gif_title">Random cat gif</string>
+    <string name="text_to_say_title">Create a random image with custom text</string>
+    <string name="home_title">Random cat images</string>
 </resources>

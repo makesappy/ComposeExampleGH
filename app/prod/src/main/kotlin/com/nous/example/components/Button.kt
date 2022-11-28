@@ -4,16 +4,14 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nous.example.theme.CustomTheme
 import com.nous.example.theme.ProvideRipple
@@ -185,5 +183,13 @@ internal data class CustomButtonColors(
 
     fun contentColor(enabled: Boolean): Color {
         return if (enabled) contentColor else disabledContentColor
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    Surface(modifier = Modifier.width(200.dp)) {
+        CustomPrimaryButton(text = "Text", onClick = { })
     }
 }

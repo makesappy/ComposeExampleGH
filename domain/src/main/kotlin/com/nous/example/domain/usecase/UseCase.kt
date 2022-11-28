@@ -1,4 +1,4 @@
-package com.nous.example.domain
+package com.nous.example.domain.usecase
 
 sealed interface UseCase<in I, out O>
 

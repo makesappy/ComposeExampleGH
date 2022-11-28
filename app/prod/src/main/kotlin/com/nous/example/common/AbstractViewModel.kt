@@ -2,15 +2,13 @@ package com.nous.example.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nous.example.domain.model.Data
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.lastOrNull
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 
@@ -72,7 +70,7 @@ abstract class AbstractViewModel<S : AbstractViewModel.State>(initialState: S) :
      */
     protected fun launchWhenActive(block: suspend CoroutineScope.() -> Unit) {
         viewModelScope.launch {
-            if (isActive.lastOrNull() == true) {
+            isActive.filter { it }.collect {
                 scope.launch(block = block)
             }
         }
@@ -80,28 +78,6 @@ abstract class AbstractViewModel<S : AbstractViewModel.State>(initialState: S) :
 
     /**
      * Marker interface for all view model states.
-     *
-     * Implementing classes must be data classes.
-     *
-     * States should be kept as flat as possible, and their properties should be mainly primitive or primitive-like types, so the view
-     * doesn't need to format or transform the data in any way.
-     *
-     * @see AbstractViewModel
      */
-    interface State {
-
-        /**
-         * Unified State Error object
-         * @param type Error of [Type] type
-         */
-        data class Error(
-            val type: Type
-        ) {
-            enum class Type {
-                General,
-                Timeout,
-                MissingInternet
-            }
-        }
-    }
+    interface State
 }

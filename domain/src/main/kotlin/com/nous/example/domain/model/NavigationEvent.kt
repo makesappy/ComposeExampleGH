@@ -1,7 +1,7 @@
 package com.nous.example.domain.model
 
 typealias ForwardNavigationEvent = NavigationEvent.ForwardEvent
-typealias PopUpNavigationEvent = NavigationEvent.PopUpEvent
+typealias PopUpTillNavigationEvent = NavigationEvent.PopUpTillEvent
 typealias BackNavigationEvent = NavigationEvent.BackEvent
 
 /**
@@ -34,7 +34,7 @@ sealed interface NavigationEvent {
      * @property route Targeting route where to navigate back.
      * @property inclusive Whether the given route destination should also be popped from backstack.
      */
-    data class PopUpEvent(
+    data class PopUpTillEvent(
         val route: Route,
         val inclusive: Boolean = false,
     ) : NavigationEvent
