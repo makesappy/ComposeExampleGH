@@ -11,5 +11,6 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo</item>
         <item name="windowSplashScreenBackground">@color/quaternary</item>
         <item name="postSplashScreenTheme">@style/CustomTheme</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
     </style>
 </resources>

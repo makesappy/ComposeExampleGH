@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.nous.example.common.ContentOrErrorEffect
+import com.nous.example.common.withRegisteredLifecycle
 import com.nous.example.components.LoadingDialog
 import com.nous.example.presentation.MainViewModel
 import com.nous.example.theme.CustomTheme
@@ -14,7 +15,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 internal fun MainScreen() {
-    val viewModel = getViewModel<MainViewModel>()
+    val viewModel = getViewModel<MainViewModel>().withRegisteredLifecycle()
 
     MainScreenImpl(viewModel = viewModel)
 }

@@ -17,7 +17,7 @@ fun CustomText(
     text: String,
     style: TextStyle,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified,
+    color: Color = CustomTheme.colors.textPrimary,
     fontSize: TextUnit = TextUnit.Unspecified,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,

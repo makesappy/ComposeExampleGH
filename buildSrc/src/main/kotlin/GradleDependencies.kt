@@ -26,7 +26,7 @@ object gradleDependencies {
             val lifecycleCommon = "androidx.lifecycle:lifecycle-common" version versions.androidxLifecycle
             val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx" version versions.androidxLifecycle
             val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx" version versions.androidxLifecycle
-            val splashScreen = "androidx.core:core-splashscreen" version "1.0.0"
+            val splashScreen = "androidx.core:core-splashscreen" version "1.0.0-beta02"
             val browser = "androidx.browser:browser" version "1.4.0"
         }
 
@@ -90,10 +90,6 @@ object gradleDependencies {
             }
         }
 
-        object media {
-            val exoplayer = "com.google.android.exoplayer:exoplayer" version "2.18.1"
-        }
-
         object test {
             internal object android {
                 val archCore = "android.arch.core:core-testing" version "2.1.0"
@@ -135,6 +131,7 @@ object gradleDependencies {
             val coilCompose = "io.coil-kt:coil-compose" version versions.coil
             val coil = "io.coil-kt:coil" version versions.coil
             val composeReordable = "org.burnoutcrew.composereorderable:reorderable" version "0.9.2"
+            val material = "com.google.android.material:material" version "1.7.0"
 
             object compose {
                 internal val runtime = "androidx.compose.runtime:runtime" version versions.compose
@@ -220,6 +217,7 @@ object gradleDependencies {
                     libs.ui.compose.uiTooling,
                     libs.ui.compose.foundation,
                     libs.ui.compose.animation,
+                    libs.ui.material,
                     libs.ui.compose.material3,
                     libs.ui.compose.constraintLayout,
                     libs.ui.accompanist.swipeRefresh,
