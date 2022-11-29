@@ -6,18 +6,9 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-internal interface HarryPotterApi {
+interface HarryPotterApi {
     @GET("api/characters")
     suspend fun getCharacters(): Response<List<CharacterDto>>
-
-    @GET("api/characters/students")
-    suspend fun getStudents(): Response<List<CharacterDto>>
-
-    @GET("api/characters/staff")
-    suspend fun getStaff(): Response<List<CharacterDto>>
-
-    @GET("api/characters/house/{house}")
-    suspend fun getByHouse(@Path("house") house: String): Response<List<CharacterDto>>
 
     @GET("api/spells")
     suspend fun getSpells(): Response<List<Spell>>
