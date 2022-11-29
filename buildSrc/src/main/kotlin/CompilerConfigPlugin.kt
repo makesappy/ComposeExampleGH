@@ -2,11 +2,11 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.kotlin.dsl.plugins
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal class CompilerConfigPlugin : Plugin<Project> by local plugin {
-
     java {
         toolchain {
             languageVersion.set(JavaLanguageVersion.of(11))

@@ -1,5 +1,6 @@
 package com.nous.example.data.di
 
+import com.nous.example.data.api.Api
 import com.nous.example.data.controller.AndroidOverlayErrorController
 import com.nous.example.data.controller.AndroidStringResourceController
 import org.koin.core.module.dsl.singleOf
@@ -17,4 +18,5 @@ val dataModule = module {
     singleOf(::AppInitializerController) bind InitializerController::class
     singleOf(::AndroidStringResourceController) bind StringResourceController::class
     singleOf(::AndroidOverlayErrorController) bind OverlayErrorController::class
+    singleOf(::Api)
 }

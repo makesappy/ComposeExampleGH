@@ -61,8 +61,7 @@ object gradleDependencies {
         object networking {
             object retrofit2 {
                 val retrofit = "com.squareup.retrofit2:retrofit" version versions.retrofit
-                val moshiConverter = "com.squareup.retrofit2:converter-moshi" version versions.retrofit
-                val scalarsConverter = "com.squareup.retrofit2:converter-scalars" version versions.retrofit
+                val kotlinSerializerConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter" version "0.8.0"
             }
 
             object okHttp {
@@ -70,7 +69,7 @@ object gradleDependencies {
                 val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor" version versions.okhttp
             }
 
-            val moshi = "com.squareup.moshi:moshi-kotlin" version "1.13.0"
+            val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json" version "1.4.1"
         }
 
         object database {
@@ -170,9 +169,8 @@ object gradleDependencies {
             object networking {
                 val retrofit = listOf(
                     libs.networking.retrofit2.retrofit,
-                    libs.networking.retrofit2.moshiConverter,
-                    libs.networking.retrofit2.scalarsConverter,
-                    libs.networking.moshi,
+                    libs.networking.retrofit2.kotlinSerializerConverter,
+                    libs.networking.serialization,
                     libs.networking.okHttp.client
                 )
             }

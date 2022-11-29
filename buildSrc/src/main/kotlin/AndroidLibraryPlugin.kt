@@ -5,6 +5,7 @@ import org.gradle.kotlin.dsl.apply
 class AndroidLibraryPlugin : Plugin<Project> by local plugin {
     apply(plugin = "com.android.library")
     apply(plugin = "kotlin-android")
+    apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
     apply<CompilerConfigPlugin>()
     apply<TestConfigPlugin>()
 
