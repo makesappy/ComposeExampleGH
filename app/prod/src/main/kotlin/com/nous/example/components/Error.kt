@@ -7,13 +7,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.nous.example.prod.BuildConfig
 import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
 import java.time.LocalDateTime
 
 @Composable
-fun ErrorView(
+internal fun ErrorView(
     title: String,
     description: String,
     primaryButtonTitle: String,
@@ -61,13 +62,17 @@ fun ErrorView(
                 style = CustomTheme.typography.disclaimer
             )
             Spacer(modifier = Modifier.height(CustomTheme.dimensions.spaceXL))
-            CustomPrimaryButton(text = primaryButtonTitle, onClick = onPrimaryClick)
+            CustomPrimaryButton(
+                modifier = Modifier.defaultMinSize(minWidth = 200.dp),
+                text = primaryButtonTitle,
+                onClick = onPrimaryClick
+            )
         }
     }
 }
 
 @Composable
-fun MissingInternetErrorView(
+internal fun MissingInternetErrorView(
     onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +86,7 @@ fun MissingInternetErrorView(
 }
 
 @Composable
-fun TimeoutErrorView(
+internal fun TimeoutErrorView(
     onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -95,7 +100,7 @@ fun TimeoutErrorView(
 }
 
 @Composable
-fun GeneralErrorView(
+internal fun GeneralErrorView(
     onButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

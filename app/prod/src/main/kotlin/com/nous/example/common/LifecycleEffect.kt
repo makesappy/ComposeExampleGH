@@ -13,7 +13,7 @@ import androidx.lifecycle.LifecycleOwner
  * Wrapper of DisposableEffect which observes compose lifecycle.
  */
 @Composable
-fun LifecycleEffect(
+internal fun LifecycleEffect(
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     onCreate: (() -> Unit)? = null,
     onStart: (() -> Unit)? = null,

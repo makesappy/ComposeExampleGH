@@ -13,11 +13,11 @@ import com.nous.example.theme.CustomTheme
 import com.nous.example.prod.R
 
 @Composable
-fun LoadingDialog() {
+internal fun LoadingDialog() {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(4.dp),
-        color = CustomTheme.colors.componentBackgroundTertiary,
+        color = CustomTheme.colors.textSecondary,
         contentColor = CustomTheme.colors.textPrimary
     ) {
         Column(

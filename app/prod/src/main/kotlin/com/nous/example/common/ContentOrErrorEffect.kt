@@ -7,7 +7,7 @@ import com.nous.example.components.TimeoutErrorView
 import com.nous.example.domain.model.Data
 
 @Composable
-fun ContentOrErrorEffect(
+internal fun ContentOrErrorEffect(
     error: Data.Error?,
     onErrorPrimaryButtonClick: () -> Unit,
     content: @Composable () -> Unit = {}
@@ -20,7 +20,7 @@ fun ContentOrErrorEffect(
 }
 
 @Composable
-fun Data.Error.Render(
+internal fun Data.Error.Render(
     onErrorPrimaryButtonClick: () -> Unit,
 ) {
     when (type) {

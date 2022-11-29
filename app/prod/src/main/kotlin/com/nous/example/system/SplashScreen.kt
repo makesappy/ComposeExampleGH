@@ -33,7 +33,7 @@ private fun SplashScreenImpl() {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .background(CustomTheme.colors.quaternary)
+            .background(CustomTheme.colors.primary)
     ) {
         val (logoImage, progressIndicatorBox) = createRefs()
 

@@ -8,8 +8,6 @@ import kotlinx.coroutines.withContext
 
 class SearchCharacterUseCase(
     private val repository: CharacterRepository
-) : SuspendUseCase<String, Flow<List<Character>>> {
-    override suspend fun invoke(input: String) = withContext(Dispatchers.IO) {
-        repository.search(input)
-    }
+) : SynchronousUseCase<String, Flow<List<Character>>> {
+    override fun invoke(input: String) = repository.search(input)
 }

@@ -8,6 +8,9 @@ import com.nous.example.domain.model.Data
 import com.nous.example.domain.model.ResultData
 import com.nous.example.domain.model.Spell
 import com.nous.example.domain.repository.SpellRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
 
 internal class HarryPotterSpellRepository(
     private val api: Api,
@@ -31,5 +34,5 @@ internal class HarryPotterSpellRepository(
         )
     }
 
-    override suspend fun search(query: String) = dao.search(query)
+    override fun search(query: String) = dao.search(query).flowOn(Dispatchers.IO)
 }

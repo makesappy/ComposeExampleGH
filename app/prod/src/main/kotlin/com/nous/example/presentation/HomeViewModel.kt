@@ -1,24 +1,26 @@
 package com.nous.example.presentation
 
 import com.nous.example.common.AbstractViewModel
-import com.nous.example.domain.model.DataCategory
+import com.nous.example.domain.model.ShowCategory
 import com.nous.example.domain.usecase.*
 
-class HomeViewModel(
-    private val openListOfTagsScreen: OpenAllCharactersScreenUseCase,
-    private val openTextToSayScreen: OpenSpellsScreenUseCase,
-    private val openImgScreen: OpenStudentsScreenUseCase,
-    private val openGifScreen: OpenStaffScreenUseCase
+internal class HomeViewModel(
+    private val openAllCharactersScreen: OpenAllCharactersScreenUseCase,
+    private val openSpellsScreen: OpenSpellsScreenUseCase,
+    private val openStudentsScreen: OpenStudentsScreenUseCase,
+    private val openStaffScreen: OpenStaffScreenUseCase,
+    private val openHousesScreen: OpenHousesScreenUseCase
 ) : AbstractViewModel<HomeViewModel.State>(State()) {
 
-    fun openCategory(category: DataCategory) = when (category) {
-        DataCategory.ListOfTags -> openListOfTagsScreen()
-        DataCategory.RandomImg -> openImgScreen()
-        DataCategory.RandomGif -> openGifScreen()
-        DataCategory.TextToSay -> openTextToSayScreen()
+    fun openCategory(category: ShowCategory) = when (category) {
+        ShowCategory.All -> openAllCharactersScreen()
+        ShowCategory.Spells -> openSpellsScreen()
+        ShowCategory.Students -> openStudentsScreen()
+        ShowCategory.Staff -> openStaffScreen()
+        ShowCategory.Houses -> openHousesScreen()
     }
 
     data class State(
-        val categories: List<DataCategory> = DataCategory.values().toList()
+        val categories: List<ShowCategory> = ShowCategory.values().toList()
     ) : AbstractViewModel.State
 }

@@ -7,13 +7,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.nous.example.theme.CustomTheme
 
 @Composable
-fun SmallCircularProgressIndicator(
+internal fun SmallCircularProgressIndicator(
     modifier: Modifier = Modifier
 ) {
     CircularProgressIndicatorImpl(
@@ -51,7 +52,7 @@ private fun CircularProgressIndicatorImpl(
 }
 
 private val trackColor
-    @Composable get() = CustomTheme.colors.surfacePrimary
+    @Composable get() = CustomTheme.colors.textSecondary
 
 private val indicatorColor
     @Composable get() = CustomTheme.colors.primary

@@ -4,5 +4,5 @@ package com.nous.example.domain.model
 data class WandDto(
     val wood: String,
     val core: String,
-    val length: Double
+    val length: Double?
 )

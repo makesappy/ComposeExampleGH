@@ -37,3 +37,17 @@ class Data {
         }
     }
 }
+
+inline fun <T> ResultData<T>.onError(block: (Data.Error) -> Unit): ResultData<T> {
+    if (this is Data.Error) {
+        block(this)
+    }
+    return this
+}
+
+inline fun <T> ResultData<T>.onSuccess(block: (T) -> Unit): ResultData<T> {
+    if (this is Data.Success) {
+        block(value)
+    }
+    return this
+}

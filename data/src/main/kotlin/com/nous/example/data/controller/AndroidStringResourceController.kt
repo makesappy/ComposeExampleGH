@@ -3,7 +3,7 @@ package com.nous.example.data.controller
 import android.content.Context
 import com.nous.example.domain.controller.StringResourceController
 
-class AndroidStringResourceController(private val context: Context) :
+internal class AndroidStringResourceController(private val context: Context) :
     StringResourceController {
 
     override fun getString(id: Int, vararg formatArgs: Any) = context.getString(id, *formatArgs)

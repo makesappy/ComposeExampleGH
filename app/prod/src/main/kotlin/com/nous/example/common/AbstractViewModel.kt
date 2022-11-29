@@ -20,7 +20,7 @@ import kotlinx.coroutines.plus
  *
  * @see AbstractViewModel.State
  */
-abstract class AbstractViewModel<S : AbstractViewModel.State>(initialState: S) : ViewModel() {
+internal abstract class AbstractViewModel<S : AbstractViewModel.State>(initialState: S) : ViewModel() {
     private val mutableStates = MutableStateFlow(initialState)
     private val isActive = MutableStateFlow(false)
 

@@ -10,41 +10,15 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xff124559),
-    secondary = Color(0xff0A1D2F),
-    tertiary = Color(0xffF4F9FB),
-    background = Color(0xFF0A1D2F),
-    surface = Color(0xFF0A1D2F),
-    onPrimary = Color(0xFF0A1D2F),
-    onSecondary = Color(0xFF0A1D2F),
-    onTertiary = Color(0xFF0A1D2F),
-    onBackground = Color(0xffF4F9FB),
-    onSurface = Color(0xffF4F9FB),
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Color(0xff124559),
-    secondary = Color(0xffF4F9FB),
-    tertiary = Color(0xff0A1D2F),
-    background = Color(0xffF4F9FB),
-    surface = Color(0xffF4F9FB),
-    onPrimary = Color(0xffF4F9FB),
-    onSecondary = Color(0xffF4F9FB),
-    onTertiary = Color(0xffF4F9FB),
-    onBackground = Color(0xFF0A1D2F),
-    onSurface = Color(0xFF0A1D2F),
-)
-
 @Composable
-fun CustomTheme(
+internal fun CustomTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     CustomTheme.isThemeInDarkMode = useDarkTheme
 
     ProvideColorsDimensionsAndElevations(useDarkTheme) {
-        ProvideRipple(CustomTheme.colors.surfacePrimary) {
+        ProvideRipple(CustomTheme.colors.textSecondary) {
             ProvideColorAwareTypography {
                 InitializeStatusBar(useDarkTheme)
                 content()
@@ -93,7 +67,7 @@ private fun ProvideColorAwareTypography(content: @Composable () -> Unit) {
     }
 }
 
-object CustomTheme {
+internal object CustomTheme {
 
     val typography: CustomTypography
         @Composable

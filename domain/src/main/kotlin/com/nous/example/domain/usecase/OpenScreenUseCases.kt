@@ -56,3 +56,12 @@ class OpenCharactersByHouseScreenUseCase(
         navigationController.goToByHouse(input)
     }
 }
+
+class OpenHousesScreenUseCase(
+    private val navigationController: MainNavigationController
+) : SynchronousUseCase<Unit, Unit> {
+
+    override fun invoke(input: Unit) {
+        navigationController.goToHouses()
+    }
+}

@@ -1,11 +1,8 @@
 package com.nous.example.system
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,8 +14,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nous.example.components.CustomText
-import com.nous.example.domain.model.DataCategory
-import com.nous.example.ext.textResId
+import com.nous.example.domain.model.ShowCategory
+import com.nous.example.ext.titleResId
 import com.nous.example.presentation.HomeViewModel
 import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
@@ -36,55 +33,52 @@ internal fun HomeScreen() {
 
 @Composable
 private fun HomeScreenImpl(
-    openCategory: (DataCategory) -> Unit,
+    openCategory: (ShowCategory) -> Unit,
     state: HomeViewModel.State
 ) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    CustomText(
-                        text = stringResource(id = R.string.home_title),
-                        style = CustomTheme.typography.header2.copy(color = CustomTheme.colors.textPrimary)
-                    )
-                },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = CustomTheme.colors.primary
-                ),
-            )
-        }
+        containerColor = CustomTheme.colors.secondary
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 128.dp),
+        LazyColumn(
             modifier = Modifier.padding(
                 horizontal = CustomTheme.dimensions.spaceXS,
-                vertical = it.calculateTopPadding()
+                vertical = CustomTheme.dimensions.spaceXS
             )
         ) {
-            items(state.categories.size) {
-                val category = state.categories[it]
+            item {
+                CustomText(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(CustomTheme.dimensions.spaceM),
+                    text = stringResource(id = R.string.home_title),
+                    style = CustomTheme.typography.header1,
+                    color = CustomTheme.colors.textPrimary,
+                    textAlign = TextAlign.Center
+                )
+            }
+            items(state.categories) { showCategory ->
                 Card(
                     modifier = Modifier
                         .padding(CustomTheme.dimensions.spaceXS),
-                    shape = RoundedCornerShape(4.dp),
+                    shape = RoundedCornerShape(9.dp),
                     elevation = CardDefaults.cardElevation(
                         defaultElevation = CustomTheme.elevations.elevationM
                     ),
                     colors = CardDefaults.cardColors(
-                        containerColor = CustomTheme.colors.quaternary,
-                        contentColor = CustomTheme.colors.textPrimary
+                        containerColor = CustomTheme.colors.primary
                     ),
-                    onClick = { openCategory(category) }
+                    onClick = { openCategory(showCategory) }
                 ) {
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
                             .fillMaxSize()
-                            .defaultMinSize(minHeight = 160.dp)
-                            .padding(CustomTheme.dimensions.spaceXS)
+                            .defaultMinSize(minHeight = 75.dp)
+                            .padding(CustomTheme.dimensions.spaceS)
                     ) {
                         CustomText(
-                            text = stringResource(id = category.textResId()),
+                            text = stringResource(id = showCategory.titleResId()),
                             style = CustomTheme.typography.body1,
+                            color = CustomTheme.colors.secondary,
                             textAlign = TextAlign.Center
                         )
                     }

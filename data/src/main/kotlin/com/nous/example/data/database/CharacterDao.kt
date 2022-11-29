@@ -26,5 +26,5 @@ internal interface CharacterDao {
     suspend fun getCharactersByClassification(classification: Classification): List<Character>
 
     @Query("SELECT * FROM character WHERE name LIKE '%' || :name || '%'")
-    suspend fun search(name: String): Flow<List<Character>>
+    fun search(name: String): Flow<List<Character>>
 }

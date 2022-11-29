@@ -12,15 +12,15 @@ import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import com.nous.example.prod.R
 
-val provider = GoogleFont.Provider(
+internal val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
     certificates = R.array.com_google_android_gms_fonts_certs
 )
 
-val RobotoFont = GoogleFont(name = "Roboto")
+internal val RobotoFont = GoogleFont(name = "Roboto")
 
-val RobotoFontFamily = FontFamily(
+internal val RobotoFontFamily = FontFamily(
     Font(googleFont = RobotoFont, fontProvider = provider),
     Font(googleFont = RobotoFont, fontProvider = provider, weight = FontWeight.Light),
     Font(googleFont = RobotoFont, fontProvider = provider, weight = FontWeight.Medium),
@@ -28,7 +28,7 @@ val RobotoFontFamily = FontFamily(
 )
 
 @Stable
-class CustomTypography(
+internal class CustomTypography(
     display: TextStyle,
     header1: TextStyle,
     header2: TextStyle,

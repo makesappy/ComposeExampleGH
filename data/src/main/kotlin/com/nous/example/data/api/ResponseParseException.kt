@@ -5,4 +5,4 @@ package com.nous.example.data.api
  * @property message Exception message.
  * @property cause Cause exception. Default is null.
  */
-class ResponseParseException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)
+internal class ResponseParseException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)

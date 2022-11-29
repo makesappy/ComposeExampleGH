@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
 /**
  * RoomDatabaseFactory creates encrypted Room database
  */
-class RoomDatabaseFactory internal constructor(
+internal class RoomDatabaseFactory internal constructor(
     private val applicationContext: Context,
     private val prefs: SharedPreferences
 ) {

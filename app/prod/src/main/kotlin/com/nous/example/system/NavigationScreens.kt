@@ -29,8 +29,9 @@ internal fun Screens(
         composable(Route.AllCharacters()) { AllCharactersScreen() }
         composable(Route.Students()) { StudentsScreen() }
         composable(Route.Staff()) { StaffScreen() }
+        composable(Route.Houses()) { HousesScreenUseCase() }
         composable(Route.Spells()) { SpellsScreen() }
-        composable(route = "${Route.ByHouse()}/{house}") {
+        composable(route = "${Route.ByHouse()}/{$houseNavArg") {
             val houseArg = it.arguments?.getString(houseNavArg) ?: return@composable
             ByHouseCharactersScreen(house = House.valueOf(houseArg))
         }

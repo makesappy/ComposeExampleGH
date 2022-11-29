@@ -6,7 +6,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Immutable
-class CustomDimensions(
+internal class CustomDimensions(
     /** XXXS spacing between components. */
     val spaceXXXS: Dp = 2.dp,
 

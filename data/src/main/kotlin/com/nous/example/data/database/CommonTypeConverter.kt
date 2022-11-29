@@ -3,8 +3,17 @@ package com.nous.example.data.database
 import androidx.room.TypeConverter
 import com.nous.example.domain.model.*
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-object CommonTypeConverter {
+private const val listSeparator = ","
+
+internal object CommonTypeConverter {
+    @TypeConverter
+    fun fromList(obj: List<String>?) = obj?.joinToString(listSeparator)
+
+    @TypeConverter
+    fun toList(string: String?) = string?.split(listSeparator)
+
     @TypeConverter
     fun fromClassification(obj: Classification?) = obj?.name
 

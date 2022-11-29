@@ -1,8 +1,5 @@
 package com.nous.example.domain.model
 
-import com.nous.example.domain.serializers.LocalDateSerializer
-import java.time.LocalDate
-
 @kotlinx.serialization.Serializable
 data class CharacterDto(
     val name: String,
@@ -10,14 +7,13 @@ data class CharacterDto(
     val species: String,
     val gender: String,
     val house: String?,
-    @kotlinx.serialization.Serializable(with = LocalDateSerializer::class)
-    val dateOfBirth: LocalDate?,
+    val dateOfBirth: String,
     val wizard: Boolean,
-    val ancestry: String?,
+    val ancestry: String,
     val eyeColour: String,
-    val hairColor: String,
-    val wand: WandDto?,
-    val patronus: String?,
+    val hairColour: String,
+    val wand: WandDto,
+    val patronus: String,
     val hogwartsStudent: Boolean,
     val hogwartsStaff: Boolean,
     val actor: String?,
