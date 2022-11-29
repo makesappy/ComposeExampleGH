@@ -8,7 +8,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.factoryOf
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
@@ -16,13 +15,19 @@ import java.util.concurrent.TimeUnit
 val domainModule = module {
     factoryOf(::SetInitializedUseCase)
     factoryOf(::OpenHomeScreenUseCase)
-    factoryOf(::OpenGifScreenUseCase)
-    factoryOf(::OpenImgScreenUseCase)
-    factoryOf(::OpenTextToSayScreenUseCase)
-    factoryOf(::OpenListOfTagsScreenUseCase)
+    factoryOf(::OpenStaffScreenUseCase)
+    factoryOf(::OpenStudentsScreenUseCase)
+    factoryOf(::OpenSpellsScreenUseCase)
+    factoryOf(::OpenAllCharactersScreenUseCase)
     factoryOf(::ObserveNavigationEventUseCase)
     factoryOf(::ObserveOverlayErrorUseCase)
     factoryOf(::ShowOverlayErrorUseCase)
+    factoryOf(::GetCharactersUseCase)
+    factoryOf(::GetCharactersByHouseUseCase)
+    factoryOf(::GetCharactersByClassificationUseCase)
+    factoryOf(::GetSpellsUseCase)
+    factoryOf(::SearchCharacterUseCase)
+    factoryOf(::SearchSpellUseCase)
 
     single { getRetrofit().create(HarryPotterApi::class.java) }
 }

@@ -3,14 +3,15 @@ package com.nous.example.system
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.nous.example.domain.model.House
 
 @Composable
-internal fun GifScreen() {
+internal fun ByHouseCharactersScreen(house: House) {
 
 }
 
 @Composable
-private fun GifScreenImpl() {
+private fun ByHouseCharactersImpl() {
     Scaffold {
 
     }
@@ -19,5 +20,5 @@ private fun GifScreenImpl() {
 @Preview
 @Composable
 private fun Preview() {
-    GifScreenImpl()
+    ByHouseCharactersImpl()
 }

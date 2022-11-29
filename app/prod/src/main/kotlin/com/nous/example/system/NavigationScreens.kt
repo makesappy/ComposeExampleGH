@@ -8,12 +8,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.nous.example.domain.model.BackNavigationEvent
-import com.nous.example.domain.model.ForwardNavigationEvent
-import com.nous.example.domain.model.PopUpTillNavigationEvent
-import com.nous.example.domain.model.Route
+import com.nous.example.domain.model.*
 import com.nous.example.domain.model.Route.Companion.Initial
 import com.nous.example.presentation.MainViewModel
+
+private const val houseNavArg = "house"
 
 @Composable
 internal fun Screens(
@@ -27,10 +26,14 @@ internal fun Screens(
     ) {
         composable(Route.Splash()) { SplashScreen() }
         composable(Route.Home()) { HomeScreen() }
-        composable(Route.ListOfTags()) { ListOfTagsScreen() }
-        composable(Route.Img()) { ImgScreen() }
-        composable(Route.Gif()) { GifScreen() }
-        composable(Route.TextToSay()) { TextToSayScreen() }
+        composable(Route.AllCharacters()) { AllCharactersScreen() }
+        composable(Route.Students()) { StudentsScreen() }
+        composable(Route.Staff()) { StaffScreen() }
+        composable(Route.Spells()) { SpellsScreen() }
+        composable(route = "${Route.ByHouse()}/{house}") {
+            val houseArg = it.arguments?.getString(houseNavArg) ?: return@composable
+            ByHouseCharactersScreen(house = House.valueOf(houseArg))
+        }
     }
 }
 
@@ -58,6 +61,11 @@ internal fun NavigationEffect(
             is ForwardNavigationEvent -> {
                 if (navController.currentDestination?.route != navigationEvent.route()) {
                     var navOptions = prepareNavOptions(navigationEvent)
+                    val route = if (navigationEvent.arg != null) {
+                        "${navigationEvent.route()}/${navigationEvent.arg}"
+                    } else {
+                        navigationEvent.route()
+                    }
 
                     navigationEvent.backStackRoutes?.forEach {
                         navController.navigate(it(), navOptions)
@@ -68,9 +76,9 @@ internal fun NavigationEffect(
                         navController.backQueue.any { backStackEntry -> backStackEntry.destination.route == navigationEvent.route() }
                     ) {
                         // Note: Popup to route if it's in backstack
-                        navController.popBackStack(navigationEvent.route(), false)
+                        navController.popBackStack(route, false)
                     } else {
-                        navController.navigate(navigationEvent.route(), navOptions)
+                        navController.navigate(route, navOptions)
                     }
 
                     onNavigationEventConsumed()

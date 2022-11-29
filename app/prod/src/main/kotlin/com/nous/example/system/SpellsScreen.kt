@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-internal fun ImgScreen() {
+internal fun SpellsScreen() {
 
 }
 
 @Composable
-private fun ImgScreenImpl() {
+private fun SpellsScreenImpl() {
     Scaffold {
 
     }
@@ -19,5 +19,5 @@ private fun ImgScreenImpl() {
 @Preview
 @Composable
 private fun Preview() {
-    ImgScreenImpl()
+    SpellsScreenImpl()
 }

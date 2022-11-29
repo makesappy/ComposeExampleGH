@@ -47,7 +47,7 @@ internal class HarryPotterCharacterRepository(
         )
     }
 
-    override suspend fun getByHouse(house: House): ResultData<List<Character>> {
+    override suspend fun getCharactersByHouse(house: House): ResultData<List<Character>> {
         val localResult = dao.getCharactersByHouse(house)
         if (localResult.isNotEmpty()) {
             return Data.Success(localResult)

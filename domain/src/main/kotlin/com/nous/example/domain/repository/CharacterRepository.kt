@@ -10,5 +10,5 @@ interface CharacterRepository : SearchRepository<Character> {
 
     suspend fun getCharactersByClassification(classification: Classification): ResultData<List<Character>>
 
-    suspend fun getByHouse(house: House): ResultData<List<Character>>
+    suspend fun getCharactersByHouse(house: House): ResultData<List<Character>>
 }
