@@ -1,14 +1,23 @@
-package com.nous.example.domain.model;
+package com.nous.example.domain.model
+
+sealed interface LoadableData<out T>
 
 sealed interface ResultData<out T>
 
 class Data {
     /**
+     * Indicates that the data is loading.
+     */
+    object Loading : LoadableData<Nothing> {
+        override fun toString() = "Loading"
+    }
+
+    /**
      * Successfully loaded data.
      *
      * @param value The data itself. The type may be nullable.
      */
-    data class Success<out T>(val value: T) : ResultData<T> {
+    data class Success<out T>(val value: T) : LoadableData<T>,  ResultData<T> {
         override fun toString() = "Success($value)"
     }
 
@@ -22,7 +31,7 @@ class Data {
         val cause: Throwable,
         val previousError: Error? = null,
         val type: Type = Type.General,
-    ) : ResultData<Nothing> {
+    ) : LoadableData<Nothing>, ResultData<Nothing> {
         override fun toString() = "Error ($cause) ${previousError?.let { "-> $it" }.orEmpty()}"
 
         /**
