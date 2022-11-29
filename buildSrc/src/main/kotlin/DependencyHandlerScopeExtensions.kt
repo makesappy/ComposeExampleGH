@@ -32,6 +32,10 @@ fun DependencyHandlerScope.androidTestImplementation(dependencies: List<Any>) {
     dependencies.forEach { "androidTestImplementation"(it) }
 }
 
+fun DependencyHandlerScope.ksp(dependency: Any) {
+    "ksp"(dependency)
+}
+
 fun DependencyHandlerScope.api(dependency: Any) {
     "api"(dependency)
 }

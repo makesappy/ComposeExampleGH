@@ -4,7 +4,7 @@ import com.nous.example.domain.serializers.LocalDateSerializer
 import java.time.LocalDate
 
 @kotlinx.serialization.Serializable
-internal data class CharacterDto(
+data class CharacterDto(
     val name: String,
     val alternate_names: List<String>,
     val species: String,

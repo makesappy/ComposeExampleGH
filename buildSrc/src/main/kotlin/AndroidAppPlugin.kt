@@ -1,3 +1,6 @@
+import com.mikepenz.aboutlibraries.plugin.AboutLibrariesExtension
+import com.mikepenz.aboutlibraries.plugin.DuplicateMode
+import com.mikepenz.aboutlibraries.plugin.DuplicateRule
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -8,6 +11,7 @@ import java.util.Properties
 class AndroidAppPlugin : Plugin<Project> by local plugin {
     apply(plugin = "com.android.application")
     apply(plugin = "kotlin-android")
+    apply(plugin = "com.google.devtools.ksp")
     apply(plugin = "com.mikepenz.aboutlibraries.plugin")
     apply<CompilerConfigPlugin>()
     apply<TestConfigPlugin>()
@@ -71,6 +75,14 @@ class AndroidAppPlugin : Plugin<Project> by local plugin {
             ignoreTestSources = true
             warningsAsErrors = true
             checkGeneratedSources = false
+        }
+
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+        extension<AboutLibrariesExtension> {
+            duplicationMode = DuplicateMode.MERGE
+            duplicationRule = DuplicateRule.GROUP
         }
     }
 }

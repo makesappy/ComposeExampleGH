@@ -28,6 +28,7 @@ object gradleDependencies {
             val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx" version versions.androidxLifecycle
             val splashScreen = "androidx.core:core-splashscreen" version "1.0.0-beta02"
             val browser = "androidx.browser:browser" version "1.4.0"
+            val securityCrypto = "androidx.security:security-crypto" version "1.1.0-alpha03"
         }
 
         object theme {

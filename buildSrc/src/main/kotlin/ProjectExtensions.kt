@@ -5,7 +5,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.findByType
-import java.io.ByteArrayOutputStream
+import com.google.devtools.ksp.gradle.KspExtension
 
 /** Applies block to Project specific part of [T] type **/
 internal inline fun <reified T : Any> Project.extension(block: T.() -> Unit) {
@@ -14,6 +14,11 @@ internal inline fun <reified T : Any> Project.extension(block: T.() -> Unit) {
 
 /** Applies block to Project specific part of [ApplicationExtension] type **/
 internal fun Project.androidApplication(block: ApplicationExtension.() -> Unit) {
+    extension(block)
+}
+
+/** Applies block to Project specific part of [KspExtension] type **/
+internal fun Project.ksp(block: KspExtension.() -> Unit) {
     extension(block)
 }
 

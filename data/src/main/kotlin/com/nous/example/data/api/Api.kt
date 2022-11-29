@@ -21,9 +21,9 @@ class Api {
      *
      * Note: [callApi] and [parseDto] should throw exception when some error occurs.
      */
-    private suspend fun <DTO, MODEL> request(
+    suspend fun <DTO, MODEL> request(
         callApi: suspend () -> Response<DTO>,
-        parseDto: (DTO.() -> MODEL)
+        parseDto: suspend (DTO.() -> MODEL)
     ): ResultData<MODEL> {
         val response = when (val result = executeRequest(callApi)) {
             is Data.Success -> result.value
@@ -64,7 +64,7 @@ class Api {
 
     private suspend fun <DTO, MODEL> processSuccessfulResponse(
         response: Response<DTO>,
-        parseDto: DTO.() -> MODEL
+        parseDto: suspend DTO.() -> MODEL
     ): ResultData<MODEL> =
         withContext(Dispatchers.IO) {
             response.body()?.let { responseBody ->

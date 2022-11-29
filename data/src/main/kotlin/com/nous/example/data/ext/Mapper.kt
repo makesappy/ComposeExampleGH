@@ -1,8 +1,11 @@
-package com.nous.example.domain.ext
+package com.nous.example.data.ext
 
+import com.nous.example.data.model.CharacterEntity
+import com.nous.example.data.model.SpellEntity
+import com.nous.example.domain.ext.capitalize
 import com.nous.example.domain.model.*
 
-fun CharacterDto.toModel() = Character(
+internal fun CharacterDto.toEntity() = CharacterEntity(
     name = name,
     alternateNames = alternate_names.ifEmpty { null },
     species = species.capitalize.ifBlank { null },
@@ -35,3 +38,5 @@ fun CharacterDto.toModel() = Character(
     isAlive = alive,
     imageUrl = image
 )
+
+internal fun Spell.toEntity() = SpellEntity(name, description)
