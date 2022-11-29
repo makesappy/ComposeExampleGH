@@ -12,5 +12,6 @@ interface MainNavigationController {
     fun goToStaff()
     fun goToByHouse(house: House)
     fun goToSpells()
+    fun goToHouses()
     fun goBack()
 }

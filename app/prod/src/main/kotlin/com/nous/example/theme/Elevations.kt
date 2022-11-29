@@ -5,7 +5,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Stable
-class CustomElevations(
+internal class CustomElevations(
     elevationS: Dp,
     elevationM: Dp,
     elevationL: Dp,

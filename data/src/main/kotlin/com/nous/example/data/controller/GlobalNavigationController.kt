@@ -26,6 +26,7 @@ internal class GlobalNavigationController : MainNavigationController {
         goTo(ForwardNavigationEvent(Route.ByHouse, arg = house.name))
 
     override fun goToSpells() = goTo(Route.Spells)
+    override fun goToHouses() = goTo(Route.Houses)
 
     private fun goTo(route: Route) = goTo(ForwardNavigationEvent(route))
     private fun goTo(navigationEvent: NavigationEvent) {

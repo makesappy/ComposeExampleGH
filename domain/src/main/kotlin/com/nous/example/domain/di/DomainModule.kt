@@ -23,11 +23,14 @@ val domainModule = module {
     factoryOf(::ObserveOverlayErrorUseCase)
     factoryOf(::ShowOverlayErrorUseCase)
     factoryOf(::GetCharactersUseCase)
+    factoryOf(::OnBackClickedUseCase)
     factoryOf(::GetCharactersByHouseUseCase)
     factoryOf(::GetCharactersByClassificationUseCase)
     factoryOf(::GetSpellsUseCase)
     factoryOf(::SearchCharacterUseCase)
     factoryOf(::SearchSpellUseCase)
+    factoryOf(::OpenHousesScreenUseCase)
+    factoryOf(::OpenCharactersByHouseScreenUseCase)
 
     single { getRetrofit().create(HarryPotterApi::class.java) }
 }
@@ -41,9 +44,15 @@ fun getRetrofit(): Retrofit {
         level = HttpLoggingInterceptor.Level.BODY
     }).build()
 
+    val json = Json {
+        ignoreUnknownKeys = true
+    }
+
     return Retrofit.Builder()
         .client(okHttpClient)
         .baseUrl("https://hp-api.herokuapp.com/")
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
         .build()
 }

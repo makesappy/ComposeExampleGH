@@ -4,7 +4,7 @@ import com.nous.example.domain.controller.InitializerController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class AppInitializerController : InitializerController {
+internal class AppInitializerController : InitializerController {
 
     private val _isInitialized = MutableStateFlow(false)
 

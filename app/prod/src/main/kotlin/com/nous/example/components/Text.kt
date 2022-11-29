@@ -1,5 +1,7 @@
 package com.nous.example.components
 
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,11 +11,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import com.nous.example.theme.CustomTheme
 
 @Composable
-fun CustomText(
+internal fun CustomText(
     text: String,
     style: TextStyle,
     modifier: Modifier = Modifier,
@@ -43,4 +47,12 @@ fun CustomText(
         onTextLayout = onTextLayout,
         style = style
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun Preview() {
+    Surface(modifier = Modifier.width(200.dp)) {
+        CustomText(text = "Text", style = CustomTheme.typography.body1)
+    }
 }

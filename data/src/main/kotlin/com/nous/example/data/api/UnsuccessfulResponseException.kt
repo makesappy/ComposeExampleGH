@@ -6,4 +6,4 @@ package com.nous.example.data.api
  * @property httpStatusCode Api response Http Status code
  * @property message Exception message.
  */
-class UnsuccessfulResponseException(val httpStatusCode: Int, message: String) : RuntimeException(message)
+internal class UnsuccessfulResponseException(val httpStatusCode: Int, message: String) : RuntimeException(message)

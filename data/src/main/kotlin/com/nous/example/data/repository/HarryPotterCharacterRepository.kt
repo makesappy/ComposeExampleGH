@@ -7,6 +7,8 @@ import com.nous.example.domain.api.HarryPotterApi
 import com.nous.example.domain.ext.toModel
 import com.nous.example.domain.model.*
 import com.nous.example.domain.repository.CharacterRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 
 internal class HarryPotterCharacterRepository(
     private val api: Api,
@@ -64,5 +66,5 @@ internal class HarryPotterCharacterRepository(
         )
     }
 
-    override suspend fun search(query: String) = dao.search(query)
+    override fun search(query: String) = dao.search(query).flowOn(Dispatchers.IO)
 }

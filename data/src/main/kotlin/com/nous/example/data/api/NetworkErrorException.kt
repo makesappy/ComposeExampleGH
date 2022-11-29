@@ -5,4 +5,4 @@ package com.nous.example.data.api
  * @property message Exception message.
  * @property cause Cause exception. Default is null.
  */
-class NetworkErrorException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)
+internal class NetworkErrorException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)

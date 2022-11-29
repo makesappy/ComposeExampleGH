@@ -15,6 +15,8 @@ dependencies {
     implementation(gradleDependencies.libs.kotlin.reflect)
 
     implementation(gradleDependencies.libs.ui.coil)
+    implementation(gradleDependencies.libs.ui.coilCompose)
+    implementation(gradleDependencies.libs.ui.accompanist.placeholder)
     implementation(gradleDependencies.libs.ui.compose.activity)
     implementation(gradleDependencies.libs.ui.compose.navigation)
     implementation(gradleDependencies.libs.bundles.ui.compose)

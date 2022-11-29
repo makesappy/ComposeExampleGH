@@ -6,7 +6,7 @@ import com.nous.example.domain.usecase.SetInitializedUseCase
 import com.nous.example.domain.usecase.invoke
 import kotlinx.coroutines.delay
 
-class SplashScreenViewModel(
+internal class SplashScreenViewModel(
     private val setInitialized: SetInitializedUseCase,
     private val openHomeScreen: OpenHomeScreenUseCase
 ) : AbstractViewModel<SplashScreenViewModel.State>(State()) {
