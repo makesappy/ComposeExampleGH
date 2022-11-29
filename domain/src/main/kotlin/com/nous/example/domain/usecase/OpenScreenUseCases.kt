@@ -1,6 +1,7 @@
 package com.nous.example.domain.usecase
 
 import com.nous.example.domain.controller.MainNavigationController
+import com.nous.example.domain.model.House
 
 class OpenHomeScreenUseCase(
     private val navigationController: MainNavigationController
@@ -11,38 +12,47 @@ class OpenHomeScreenUseCase(
     }
 }
 
-class OpenListOfTagsScreenUseCase(
+class OpenAllCharactersScreenUseCase(
     private val navigationController: MainNavigationController
 ) : SynchronousUseCase<Unit, Unit> {
 
     override fun invoke(input: Unit) {
-        navigationController.goToListOfTags()
+        navigationController.goToAllCharacters()
     }
 }
 
-class OpenImgScreenUseCase(
+class OpenStudentsScreenUseCase(
     private val navigationController: MainNavigationController
 ) : SynchronousUseCase<Unit, Unit> {
 
     override fun invoke(input: Unit) {
-        navigationController.goToImg()
+        navigationController.goToStudents()
     }
 }
 
-class OpenGifScreenUseCase(
+class OpenStaffScreenUseCase(
     private val navigationController: MainNavigationController
 ) : SynchronousUseCase<Unit, Unit> {
 
     override fun invoke(input: Unit) {
-        navigationController.goToGif()
+        navigationController.goToStaff()
     }
 }
 
-class OpenTextToSayScreenUseCase(
+class OpenSpellsScreenUseCase(
     private val navigationController: MainNavigationController
 ) : SynchronousUseCase<Unit, Unit> {
 
     override fun invoke(input: Unit) {
-        navigationController.goToTextToSay()
+        navigationController.goToSpells()
+    }
+}
+
+class OpenCharactersByHouseScreenUseCase(
+    private val navigationController: MainNavigationController
+) : SynchronousUseCase<House, Unit> {
+
+    override fun invoke(input: House) {
+        navigationController.goToByHouse(input)
     }
 }

@@ -13,6 +13,7 @@ sealed interface NavigationEvent {
      * Event used to navigate forward.
      *
      * @property route Targeting route where to navigate
+     * @property arg Some custom [String] arg
      * @property clearBackStack Option to clear navigation back stack before navigation to [route]. Default value is false.
      * @property clearBackStackRoute Route to which backstack should be cleared to. Takes effect only when [clearBackStack] is set to true.
      * Default value is null to clear the whole backstack.
@@ -21,6 +22,7 @@ sealed interface NavigationEvent {
      */
     data class ForwardEvent(
         val route: Route,
+        val arg: String? = null,
         val clearBackStack: Boolean = false,
         val clearBackStackRoute: Route? = null,
         val backStackRoutes: List<Route>? = null,

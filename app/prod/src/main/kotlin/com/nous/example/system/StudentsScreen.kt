@@ -5,19 +5,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-internal fun ListOfTagsScreen() {
+internal fun StudentsScreen() {
 
 }
 
 @Composable
-private fun ListOfTagsScreenImpl() {
+private fun StudentsImpl() {
     Scaffold {
-        
+
     }
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    ListOfTagsScreenImpl()
+    StudentsImpl()
 }

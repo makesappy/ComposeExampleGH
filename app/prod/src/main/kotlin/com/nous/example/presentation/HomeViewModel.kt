@@ -5,10 +5,10 @@ import com.nous.example.domain.model.DataCategory
 import com.nous.example.domain.usecase.*
 
 class HomeViewModel(
-    private val openListOfTagsScreen: OpenListOfTagsScreenUseCase,
-    private val openTextToSayScreen: OpenTextToSayScreenUseCase,
-    private val openImgScreen: OpenImgScreenUseCase,
-    private val openGifScreen: OpenGifScreenUseCase
+    private val openListOfTagsScreen: OpenAllCharactersScreenUseCase,
+    private val openTextToSayScreen: OpenSpellsScreenUseCase,
+    private val openImgScreen: OpenStudentsScreenUseCase,
+    private val openGifScreen: OpenStaffScreenUseCase
 ) : AbstractViewModel<HomeViewModel.State>(State()) {
 
     fun openCategory(category: DataCategory) = when (category) {

@@ -1,14 +1,16 @@
 package com.nous.example.domain.controller
 
+import com.nous.example.domain.model.House
 import com.nous.example.domain.model.NavigationEvent
 import kotlinx.coroutines.flow.Flow
 
 interface MainNavigationController {
     val navigationEvent: Flow<NavigationEvent>
     fun goToHome()
-    fun goToListOfTags()
-    fun goToImg()
-    fun goToGif()
-    fun goToTextToSay()
+    fun goToAllCharacters()
+    fun goToStudents()
+    fun goToStaff()
+    fun goToByHouse(house: House)
+    fun goToSpells()
     fun goBack()
 }

@@ -8,10 +8,11 @@ package com.nous.example.domain.model
 enum class Route {
     Splash,
     Home,
-    ListOfTags,
-    Img,
-    Gif,
-    TextToSay;
+    AllCharacters,
+    Students,
+    Staff,
+    ByHouse,
+    Spells;
 
     operator fun invoke() = name.lowercase()
 

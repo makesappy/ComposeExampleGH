@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-internal fun TextToSayScreen() {
+internal fun StaffScreen() {
 
 }
 
 @Composable
-private fun TextToSayImpl() {
+private fun StaffImpl() {
     Scaffold {
 
     }
@@ -19,5 +19,5 @@ private fun TextToSayImpl() {
 @Preview
 @Composable
 private fun Preview() {
-    TextToSayImpl()
+    StaffImpl()
 }

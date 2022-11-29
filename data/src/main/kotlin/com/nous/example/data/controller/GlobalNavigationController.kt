@@ -1,10 +1,7 @@
 package com.nous.example.data.controller
 
 import com.nous.example.domain.controller.MainNavigationController
-import com.nous.example.domain.model.BackNavigationEvent
-import com.nous.example.domain.model.ForwardNavigationEvent
-import com.nous.example.domain.model.NavigationEvent
-import com.nous.example.domain.model.Route
+import com.nous.example.domain.model.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
@@ -22,10 +19,13 @@ internal class GlobalNavigationController : MainNavigationController {
     override fun goToHome() =
         goTo(ForwardNavigationEvent(route = Route.Home, clearBackStack = true))
 
-    override fun goToListOfTags() = goTo(Route.ListOfTags)
-    override fun goToImg() = goTo(Route.Img)
-    override fun goToGif() = goTo(Route.Gif)
-    override fun goToTextToSay() = goTo(Route.TextToSay)
+    override fun goToAllCharacters() = goTo(Route.AllCharacters)
+    override fun goToStudents() = goTo(Route.Students)
+    override fun goToStaff() = goTo(Route.Staff)
+    override fun goToByHouse(house: House) =
+        goTo(ForwardNavigationEvent(Route.ByHouse, arg = house.name))
+
+    override fun goToSpells() = goTo(Route.Spells)
 
     private fun goTo(route: Route) = goTo(ForwardNavigationEvent(route))
     private fun goTo(navigationEvent: NavigationEvent) {
