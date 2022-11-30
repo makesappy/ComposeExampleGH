@@ -5,15 +5,13 @@ import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.ResultData
 import com.nous.example.domain.model.onError
 import com.nous.example.domain.model.onSuccess
-import com.nous.example.domain.usecase.OnBackClickedUseCase
-import com.nous.example.domain.usecase.SearchCharacterUseCase
-import com.nous.example.domain.usecase.ShowOverlayErrorUseCase
-import com.nous.example.domain.usecase.invoke
+import com.nous.example.domain.usecase.*
 
 internal abstract class AbstractCharactersViewModel(
     private val showOverlayError: ShowOverlayErrorUseCase,
     private val onBackClicked: OnBackClickedUseCase,
-    private val searchCharacter: SearchCharacterUseCase
+    private val searchCharacter: SearchCharacterUseCase,
+    private val openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
 ) : AbstractViewModel<AbstractCharactersViewModel.State>(State()) {
 
     abstract suspend fun getCharacters(): ResultData<List<Character>>
@@ -27,6 +25,8 @@ internal abstract class AbstractCharactersViewModel(
             }
         }
     }
+
+    fun openCharacterDetail(name: String) = openCharacterDetailScreen(name)
 
     fun navigateBack() = onBackClicked()
 

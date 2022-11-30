@@ -6,7 +6,8 @@ internal class AllCharactersScreenViewModel(
     private val getCharactersUseCase: GetCharactersUseCase,
     showOverlayError: ShowOverlayErrorUseCase,
     onBackClicked: OnBackClickedUseCase,
-    searchCharacter: SearchCharacterUseCase
-) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter) {
+    searchCharacter: SearchCharacterUseCase,
+    openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
+) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter,openCharacterDetailScreen) {
     override suspend fun getCharacters() = getCharactersUseCase()
 }

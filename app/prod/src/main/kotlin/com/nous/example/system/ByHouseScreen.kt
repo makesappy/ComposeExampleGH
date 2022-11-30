@@ -23,6 +23,7 @@ internal fun ByHouseCharactersScreen(house: House) {
         textFieldState = textState,
         title = house.name,
         onBackClicked = viewModel::navigateBack,
+        onCharacterClicked = viewModel::openCharacterDetail,
         items = states.value
     )
 }

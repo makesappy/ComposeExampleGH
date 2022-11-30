@@ -6,13 +6,16 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.nous.example.domain.model.*
 import com.nous.example.domain.model.Route.Companion.Initial
 import com.nous.example.presentation.MainViewModel
 
 private const val houseNavArg = "house"
+private const val nameNavArg = "name"
 
 @Composable
 internal fun Screens(
@@ -31,9 +34,21 @@ internal fun Screens(
         composable(Route.Staff()) { StaffScreen() }
         composable(Route.Houses()) { HousesScreenUseCase() }
         composable(Route.Spells()) { SpellsScreen() }
-        composable(route = "${Route.ByHouse()}/{$houseNavArg") {
+        composable(route = "${Route.ByHouse()}/Gryffindor", arguments = listOf(
+            navArgument(nameNavArg) {
+                type = NavType.StringType
+            }
+        )) {
             val houseArg = it.arguments?.getString(houseNavArg) ?: return@composable
             ByHouseCharactersScreen(house = House.valueOf(houseArg))
+        }
+        composable(route = "${Route.Character()}/{$nameNavArg}", arguments = listOf(
+            navArgument(nameNavArg) {
+                type = NavType.StringType
+            }
+        )) {
+            val nameArg = it.arguments?.getString(nameNavArg) ?: return@composable
+            CharacterDetailScreen(nameArg = nameArg)
         }
     }
 }

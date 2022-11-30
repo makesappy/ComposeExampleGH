@@ -7,7 +7,8 @@ internal class StaffScreenViewModel(
     private val getCharactersByClassification: GetCharactersByClassificationUseCase,
     showOverlayError: ShowOverlayErrorUseCase,
     onBackClicked: OnBackClickedUseCase,
-    searchCharacter: SearchCharacterUseCase
-) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter) {
+    searchCharacter: SearchCharacterUseCase,
+    openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
+) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter,openCharacterDetailScreen) {
     override suspend fun getCharacters() = getCharactersByClassification(Classification.Staff)
 }

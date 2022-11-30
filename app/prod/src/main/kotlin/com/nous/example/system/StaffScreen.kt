@@ -21,6 +21,7 @@ internal fun StaffScreen() {
         textFieldState = textState,
         title = stringResource(id = R.string.staff_category_title),
         onBackClicked = viewModel::navigateBack,
+        onCharacterClicked = viewModel::openCharacterDetail,
         items = states.value
     )
 }

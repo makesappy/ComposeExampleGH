@@ -21,6 +21,7 @@ internal fun AllCharactersScreen() {
         textFieldState = textState,
         title = stringResource(id = R.string.all_characters_category_title),
         onBackClicked = viewModel::navigateBack,
+        onCharacterClicked = viewModel::openCharacterDetail,
         items = states.value
     )
 }

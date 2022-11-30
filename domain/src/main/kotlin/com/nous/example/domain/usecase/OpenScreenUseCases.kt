@@ -65,3 +65,12 @@ class OpenHousesScreenUseCase(
         navigationController.goToHouses()
     }
 }
+
+class OpenCharacterDetailScreenUseCase(
+    private val navigationController: MainNavigationController
+) : SynchronousUseCase<String, Unit> {
+
+    override fun invoke(input: String) {
+        navigationController.goToCharacter(input.replace(" ","_"))
+    }
+}

@@ -21,7 +21,7 @@ fun CharacterDto.toModel() = Character(
         "quarter-veela" -> Ancestry.QuaterVeela
         else -> null
     },
-    eyeColour = eyeColour.capitalize.ifBlank { null },
+    eyeColor = eyeColour.capitalize.ifBlank { null },
     hairColor = hairColour.capitalize.ifBlank { null },
     wandWood = wand.wood.capitalize.ifBlank { null },
     wandCore = wand.core.capitalize.ifBlank { null },
