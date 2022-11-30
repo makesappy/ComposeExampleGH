@@ -18,6 +18,7 @@ import com.nous.example.common.withRegisteredLifecycle
 import com.nous.example.components.CustomText
 import com.nous.example.components.CustomTopAppBar
 import com.nous.example.components.LoadingAsyncImage
+import com.nous.example.domain.ext.decodedAsArgument
 import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.Classification
 import com.nous.example.domain.model.Gender
@@ -30,7 +31,7 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 internal fun CharacterDetailScreen(nameArg: String) {
-    val name = nameArg.replace("_", " ")
+    val name = nameArg.decodedAsArgument
     val viewModel = getViewModel<CharacterDetailScreenViewModel>(parameters = {
         parametersOf(name)
     }).withRegisteredLifecycle()
@@ -56,14 +57,11 @@ private fun CharacterDetailScreenImpl(
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
+            Spacer(modifier = Modifier.padding(top = it.calculateTopPadding() + CustomTheme.dimensions.spaceXXS))
             LoadingAsyncImage(
                 url = character?.imageUrl, modifier = Modifier
-                    .size(250.dp)
+                    .size(200.dp)
                     .align(Alignment.CenterHorizontally)
-                    .padding(
-                        top = it.calculateTopPadding() + CustomTheme.dimensions.spaceXS,
-                        bottom = CustomTheme.dimensions.spaceXS
-                    )
             )
             character?.run {
                 alternateNames?.let {
@@ -82,7 +80,7 @@ private fun CharacterDetailScreenImpl(
                         text = it.format(dateTimeFormatter)
                     )
                 }
-                CustomRow(titleResId = R.string.dob_title, text = isWizard.asString())
+                CustomRow(titleResId = R.string.wizard_title, text = isWizard.asString())
                 ancestry?.let {
                     CustomRow(
                         titleResId = R.string.ancestry_title,

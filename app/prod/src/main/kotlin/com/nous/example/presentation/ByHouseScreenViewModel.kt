@@ -1,5 +1,6 @@
 package com.nous.example.presentation
 
+import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.House
 import com.nous.example.domain.usecase.*
 
@@ -7,9 +8,11 @@ internal class ByHouseScreenViewModel(
     private val getCharactersByHouse: GetCharactersByHouseUseCase,
     showOverlayError: ShowOverlayErrorUseCase,
     onBackClicked: OnBackClickedUseCase,
-    searchCharacter: SearchCharacterUseCase,
-    openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
+    private val searchCharacter: SearchCharacterUseCase,
+    private val openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
     private val house: House
-) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter,openCharacterDetailScreen) {
-    override suspend fun getCharacters() = getCharactersByHouse(house)
+) : AbstractSearchViewModel<Character>(showOverlayError, onBackClicked) {
+    override suspend fun get() = getCharactersByHouse(house)
+    override fun search(query: String) = searchCharacter(query)
+    override fun openDetail(name: String) = openCharacterDetailScreen(name)
 }

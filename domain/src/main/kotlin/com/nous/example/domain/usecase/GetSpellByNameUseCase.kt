@@ -1,13 +1,15 @@
 package com.nous.example.domain.usecase
 
+import com.nous.example.domain.model.ResultData
 import com.nous.example.domain.model.Spell
 import com.nous.example.domain.repository.SpellRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-class SearchSpellUseCase(
+class GetSpellByNameUseCase(
     private val repository: SpellRepository
-) : SynchronousUseCase<String, Flow<List<Spell>>> {
-    override fun invoke(input: String) = repository.search(input)
+) : SuspendUseCase<String, ResultData<Spell>> {
+    override suspend fun invoke(input: String) = withContext(Dispatchers.IO) {
+        repository.getSpell(input)
+    }
 }

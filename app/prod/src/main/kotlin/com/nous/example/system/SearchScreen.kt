@@ -24,15 +24,21 @@ import com.nous.example.components.LoadingAsyncImage
 import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.Classification
 import com.nous.example.domain.model.Gender
+import com.nous.example.domain.model.Key
 import com.nous.example.theme.CustomTheme
 
+private const val rowHeight = 80
+
 @Composable
-internal fun SearchCharactersScreen(
+internal fun <T : Key> SearchScreen(
     textFieldState: MutableState<TextFieldValue>,
     title: String,
     onBackClicked: () -> Unit,
-    onCharacterClicked: (String) -> Unit,
-    items: List<Character>
+    onRowClicked: (String) -> Unit,
+    imageUrl: ((T) -> String?)? = null,
+    name: (T) -> String,
+    items: List<T>,
+    showImage: Boolean = true
 ) {
     Scaffold(
         topBar = { CustomTopAppBar(title = title, onBackClicked) },
@@ -43,23 +49,29 @@ internal fun SearchCharactersScreen(
         ) {
             SearchView(state = textFieldState)
             LazyColumn {
-                items(items) { character ->
-                    Box(modifier = Modifier.clickable { onCharacterClicked(character.name) }) {
+                items(items, key = { k ->
+                    k.key
+                }) { type ->
+                    Box(modifier = Modifier.clickable { onRowClicked(name(type)) }) {
                         Row(
-                            horizontalArrangement = Arrangement.Center
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.height(rowHeight.dp)
                         ) {
-                            LoadingAsyncImage(
-                                url = character.imageUrl,
-                                modifier = Modifier
-                                    .size(80.dp)
-                                    .padding(12.dp)
-                            )
+                            if (showImage) {
+                                LoadingAsyncImage(
+                                    url = imageUrl?.invoke(type),
+                                    modifier = Modifier
+                                        .width(rowHeight.dp)
+                                        .padding(12.dp)
+                                )
+                            }
                             CustomText(
-                                text = character.name,
+                                text = name(type),
                                 style = CustomTheme.typography.body1,
                                 modifier = Modifier
-                                    .fillMaxHeight()
+                                    .wrapContentSize()
                                     .align(Alignment.CenterVertically)
+                                    .padding(start = if (!showImage) CustomTheme.dimensions.spaceL else 0.dp)
                             )
                         }
                         Divider()
@@ -83,9 +95,7 @@ private fun SearchView(
         textStyle = CustomTheme.typography.body1,
         leadingIcon = {
             Icon(
-                Icons.Default.Search,
-                contentDescription = null,
-                modifier = Modifier
+                Icons.Default.Search, contentDescription = null, modifier = Modifier
                     .padding(
                         start = CustomTheme.dimensions.spaceL,
                         end = CustomTheme.dimensions.spaceS,
@@ -133,33 +143,29 @@ private fun SearchView(
 @Preview
 @Composable
 private fun Preview() {
-    SearchCharactersScreen(
-        mutableStateOf(TextFieldValue("")),
-        "Title", {}, {}, listOf(
-            Character(
-                name = "Harry Potter",
-                gender = Gender.Male,
-                classification = Classification.Student,
-                imageUrl = "https://hp-api.herokuapp.com/images/harry.jpg",
-                isAlive = true,
-                isWizard = true
-            ),
-            Character(
-                name = "Hermione Granger",
-                gender = Gender.Female,
-                classification = Classification.Student,
-                imageUrl = "https://hp-api.herokuapp.com/images/hermione.jpg",
-                isAlive = true,
-                isWizard = true
-            ),
-            Character(
-                name = "Ron Weasley",
-                gender = Gender.Male,
-                classification = Classification.Student,
-                imageUrl = "https://hp-api.herokuapp.com/images/ron.jpg",
-                isAlive = true,
-                isWizard = true
-            )
+    SearchScreen(mutableStateOf(TextFieldValue("")), "Title", {}, {}, { "" }, { "" }, listOf(
+        Character(
+            name = "Harry Potter",
+            gender = Gender.Male,
+            classification = Classification.Student,
+            imageUrl = "https://hp-api.herokuapp.com/images/harry.jpg",
+            isAlive = true,
+            isWizard = true
+        ), Character(
+            name = "Hermione Granger",
+            gender = Gender.Female,
+            classification = Classification.Student,
+            imageUrl = "https://hp-api.herokuapp.com/images/hermione.jpg",
+            isAlive = true,
+            isWizard = true
+        ), Character(
+            name = "Ron Weasley",
+            gender = Gender.Male,
+            classification = Classification.Student,
+            imageUrl = "https://hp-api.herokuapp.com/images/ron.jpg",
+            isAlive = true,
+            isWizard = true
         )
+    )
     )
 }

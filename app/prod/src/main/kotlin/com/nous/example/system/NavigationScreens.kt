@@ -42,6 +42,10 @@ internal fun Screens(
             val nameArg = it.arguments?.getString(nameNavArg) ?: return@composable
             CharacterDetailScreen(nameArg = nameArg)
         }
+        composable("${Route.Spell()}/{$nameNavArg}") {
+            val nameArg = it.arguments?.getString(nameNavArg) ?: return@composable
+            SpellDetailScreen(nameArg = nameArg)
+        }
     }
 }
 

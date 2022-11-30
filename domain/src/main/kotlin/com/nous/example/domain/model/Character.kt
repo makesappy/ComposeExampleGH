@@ -22,4 +22,6 @@ data class Character(
     val alternateActors: List<String>? = null,
     val isAlive: Boolean,
     val imageUrl: String?
-)
+) : Key {
+    override val key: String get() = name
+}

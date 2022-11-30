@@ -16,12 +16,14 @@ internal fun StudentsScreen() {
     val viewModel = getViewModel<StudentsScreenViewModel>().withRegisteredLifecycle()
     val textState = remember { mutableStateOf(TextFieldValue("")) }
     val states = viewModel.search(textState.value.text)
-        .collectAsState(initial = viewModel.states.value.characters)
-    SearchCharactersScreen(
+        .collectAsState(initial = viewModel.states.value.data)
+    SearchScreen(
         textFieldState = textState,
         title = stringResource(id = R.string.students_category_title),
         onBackClicked = viewModel::navigateBack,
-        onCharacterClicked = viewModel::openCharacterDetail,
-        items = states.value
+        onRowClicked = viewModel::openDetail,
+        items = states.value,
+        name = { it.name },
+        imageUrl = { it.imageUrl }
     )
 }
