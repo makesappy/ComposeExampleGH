@@ -2,10 +2,13 @@ package com.nous.example.system
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -50,11 +53,17 @@ private fun CharacterDetailScreenImpl(
         topBar = {
             CustomTopAppBar(title = name, onBackClicked)
         }) {
-        Column {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
             LoadingAsyncImage(
                 url = character?.imageUrl, modifier = Modifier
-                    .size(160.dp)
-                    .padding(12.dp)
+                    .size(250.dp)
+                    .align(Alignment.CenterHorizontally)
+                    .padding(
+                        top = it.calculateTopPadding() + CustomTheme.dimensions.spaceXS,
+                        bottom = CustomTheme.dimensions.spaceXS
+                    )
             )
             character?.run {
                 alternateNames?.let {

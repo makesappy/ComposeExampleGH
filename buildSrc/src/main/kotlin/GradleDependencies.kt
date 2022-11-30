@@ -145,7 +145,7 @@ object gradleDependencies {
                 internal val constraintLayout = "androidx.constraintlayout:constraintlayout-compose" version "1.0.0"
 
                 val activity = "androidx.activity:activity-compose" version "1.6.1"
-                val navigation = "androidx.navigation:navigation-compose" version "2.5.0"
+                val navigation = "androidx.navigation:navigation-compose" version "2.5.3"
             }
 
             object accompanist {

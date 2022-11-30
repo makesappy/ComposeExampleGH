@@ -14,8 +14,8 @@ import com.nous.example.domain.model.*
 import com.nous.example.domain.model.Route.Companion.Initial
 import com.nous.example.presentation.MainViewModel
 
-private const val houseNavArg = "house"
-private const val nameNavArg = "name"
+private const val houseNavArg = "houseArg"
+private const val nameNavArg = "nameArg"
 
 @Composable
 internal fun Screens(
@@ -34,19 +34,11 @@ internal fun Screens(
         composable(Route.Staff()) { StaffScreen() }
         composable(Route.Houses()) { HousesScreenUseCase() }
         composable(Route.Spells()) { SpellsScreen() }
-        composable(route = "${Route.ByHouse()}/Gryffindor", arguments = listOf(
-            navArgument(nameNavArg) {
-                type = NavType.StringType
-            }
-        )) {
+        composable("${Route.ByHouse()}/{$houseNavArg}") {
             val houseArg = it.arguments?.getString(houseNavArg) ?: return@composable
             ByHouseCharactersScreen(house = House.valueOf(houseArg))
         }
-        composable(route = "${Route.Character()}/{$nameNavArg}", arguments = listOf(
-            navArgument(nameNavArg) {
-                type = NavType.StringType
-            }
-        )) {
+        composable("${Route.Character()}/{$nameNavArg}") {
             val nameArg = it.arguments?.getString(nameNavArg) ?: return@composable
             CharacterDetailScreen(nameArg = nameArg)
         }

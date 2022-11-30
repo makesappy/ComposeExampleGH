@@ -52,7 +52,7 @@ fun getRetrofit(): Retrofit {
 
     return Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://hp-api.herokuapp.com/")
+        .baseUrl("https://hp-api.onrender.com/")
         .addConverterFactory(
             json.asConverterFactory("application/json".toMediaType())
         )
