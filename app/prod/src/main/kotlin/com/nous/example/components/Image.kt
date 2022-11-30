@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.google.accompanist.placeholder.PlaceholderHighlight
@@ -32,7 +33,10 @@ internal fun LoadingAsyncImage(
     url: String?,
     modifier: Modifier,
 ) {
-    if (url == null) {
+    val urlState = remember {
+        mutableStateOf(value = url)
+    }
+    if (urlState.value == null) {
         Image(
             painter = painterResource(id = R.drawable.placeholder),
             contentDescription = null,
@@ -40,16 +44,16 @@ internal fun LoadingAsyncImage(
         )
     } else {
         val isLoading = remember { mutableStateOf(false) }
-        coil.compose.SubcomposeAsyncImage(
+        AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(data = url)
                 .apply(block = fun ImageRequest.Builder.() {
-                    transformations(      // Gray Scale Transformation
-                        CircleCropTransformation()       // Circle Crop Transformation
+                    transformations(
+                        CircleCropTransformation()
                     )
                 }).build(),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
+            contentScale = ContentScale.Fit,
             alignment = Alignment.Center,
             onLoading = {
                 isLoading.value = true
@@ -59,6 +63,7 @@ internal fun LoadingAsyncImage(
             },
             onError = {
                 isLoading.value = false
+                urlState.value = null
             },
             modifier = modifier.loading(
                 isLoading = isLoading.value,
