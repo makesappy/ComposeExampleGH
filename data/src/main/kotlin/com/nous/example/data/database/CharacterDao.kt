@@ -19,6 +19,9 @@ internal interface CharacterDao {
     @Query("SELECT * FROM character")
     suspend fun getCharacters(): List<Character>
 
+    @Query("SELECT * FROM character WHERE name = :name")
+    suspend fun getCharacter(name: String): Character
+
     @Query("SELECT * FROM character WHERE house = :house")
     suspend fun getCharactersByHouse(house: House): List<Character>
 

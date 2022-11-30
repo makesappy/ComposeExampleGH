@@ -31,6 +31,8 @@ val domainModule = module {
     factoryOf(::SearchSpellUseCase)
     factoryOf(::OpenHousesScreenUseCase)
     factoryOf(::OpenCharactersByHouseScreenUseCase)
+    factoryOf(::GetCharacterByNameUseCase)
+    factoryOf(::OpenCharacterDetailScreenUseCase)
 
     single { getRetrofit().create(HarryPotterApi::class.java) }
 }

@@ -32,6 +32,11 @@ internal class HarryPotterCharacterRepository(
         )
     }
 
+    override suspend fun getCharacter(name: String) = runCatching { dao.getCharacter(name) }.fold(
+        onFailure = { Data.Error(cause = it) },
+        onSuccess = { Data.Success(it) }
+    )
+
     override suspend fun getCharactersByClassification(classification: Classification): ResultData<List<Character>> {
         val localResult = dao.getCharactersByClassification(classification)
         if (localResult.isNotEmpty()) {

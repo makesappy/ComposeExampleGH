@@ -1,16 +1,19 @@
 package com.nous.example.presentation
 
 import com.nous.example.domain.model.Classification
-import com.nous.example.domain.usecase.GetCharactersByClassificationUseCase
-import com.nous.example.domain.usecase.OnBackClickedUseCase
-import com.nous.example.domain.usecase.SearchCharacterUseCase
-import com.nous.example.domain.usecase.ShowOverlayErrorUseCase
+import com.nous.example.domain.usecase.*
 
 internal class StudentsScreenViewModel(
     private val getCharactersByClassification: GetCharactersByClassificationUseCase,
     showOverlayError: ShowOverlayErrorUseCase,
     onBackClicked: OnBackClickedUseCase,
-    searchCharacter: SearchCharacterUseCase
-) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter) {
+    searchCharacter: SearchCharacterUseCase,
+    openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
+) : AbstractCharactersViewModel(
+    showOverlayError,
+    onBackClicked,
+    searchCharacter,
+    openCharacterDetailScreen
+) {
     override suspend fun getCharacters() = getCharactersByClassification(Classification.Student)
 }

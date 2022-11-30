@@ -1,17 +1,15 @@
 package com.nous.example.presentation
 
 import com.nous.example.domain.model.House
-import com.nous.example.domain.usecase.GetCharactersByHouseUseCase
-import com.nous.example.domain.usecase.OnBackClickedUseCase
-import com.nous.example.domain.usecase.SearchCharacterUseCase
-import com.nous.example.domain.usecase.ShowOverlayErrorUseCase
+import com.nous.example.domain.usecase.*
 
 internal class ByHouseScreenViewModel(
     private val getCharactersByHouse: GetCharactersByHouseUseCase,
     showOverlayError: ShowOverlayErrorUseCase,
     onBackClicked: OnBackClickedUseCase,
     searchCharacter: SearchCharacterUseCase,
+    openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
     private val house: House
-) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter) {
+) : AbstractCharactersViewModel(showOverlayError, onBackClicked, searchCharacter,openCharacterDetailScreen) {
     override suspend fun getCharacters() = getCharactersByHouse(house)
 }

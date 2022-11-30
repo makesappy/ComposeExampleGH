@@ -12,6 +12,7 @@ enum class Route {
     Students,
     Staff,
     Houses,
+    Character,
     ByHouse,
     Spells;
 

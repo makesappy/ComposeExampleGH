@@ -18,8 +18,8 @@ private val appModule = module {
     viewModelOf(::StudentsScreenViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::HousesViewModel)
-    viewModelOf(::CharacterDetailScreenViewModel)
-    viewModel { (house: House) -> ByHouseScreenViewModel(get(), get(), get(), get(), house) }
+    viewModel { (name: String) -> CharacterDetailScreenViewModel(get(), get(), get(), name) }
+    viewModel { (house: House) -> ByHouseScreenViewModel(get(), get(), get(), get(), get(), house) }
 
     singleOf(::SplashScreenDelegate)
 }

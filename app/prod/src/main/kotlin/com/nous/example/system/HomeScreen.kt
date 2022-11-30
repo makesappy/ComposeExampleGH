@@ -50,7 +50,7 @@ private fun HomeScreenImpl(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(CustomTheme.dimensions.spaceM),
-                    text = stringResource(id = R.string.home_title),
+                    text = stringResource(id = R.string.home_title).uppercase(),
                     style = CustomTheme.typography.header1,
                     color = CustomTheme.colors.textPrimary,
                     textAlign = TextAlign.Center

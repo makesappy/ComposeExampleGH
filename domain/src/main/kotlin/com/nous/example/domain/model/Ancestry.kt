@@ -7,5 +7,16 @@ enum class Ancestry {
     Muggle,
     Squib,
     HalfVeela,
-    QuaterVeela
+    QuaterVeela;
+
+    val asString: String
+        get() = when (this) {
+            HalfBlood -> "Half Blood"
+            MuggleBorn -> "Muggle Born"
+            PureBlood -> "Pure Blood"
+            Muggle -> name
+            Squib -> name
+            HalfVeela -> "Half Veela"
+            QuaterVeela -> "Quater Veela"
+        }
 }

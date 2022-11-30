@@ -1,10 +1,10 @@
 package com.nous.example.system
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -16,10 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nous.example.components.CustomText
+import com.nous.example.components.CustomTopAppBar
 import com.nous.example.components.LoadingAsyncImage
 import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.Classification
@@ -31,38 +31,11 @@ internal fun SearchCharactersScreen(
     textFieldState: MutableState<TextFieldValue>,
     title: String,
     onBackClicked: () -> Unit,
+    onCharacterClicked: (String) -> Unit,
     items: List<Character>
 ) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    CustomText(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(end = CustomTheme.dimensions.spaceL),
-                        text = title.uppercase(),
-                        style = CustomTheme.typography.header4,
-                        textAlign = TextAlign.Center
-                    )
-                },
-                navigationIcon = {
-                    IconButton(
-                        onClick = onBackClicked,
-                        enabled = true
-                    ) {
-                        Icon(
-                            Icons.Default.ArrowBack,
-                            tint = CustomTheme.colors.primary,
-                            contentDescription = null
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = CustomTheme.colors.backgroundPrimary
-                ),
-            )
-        },
+        topBar = { CustomTopAppBar(title = title, onBackClicked) },
         containerColor = CustomTheme.colors.secondary
     ) {
         Column(
@@ -71,7 +44,7 @@ internal fun SearchCharactersScreen(
             SearchView(state = textFieldState)
             LazyColumn {
                 items(items) { character ->
-                    Box {
+                    Box(modifier = Modifier.clickable { onCharacterClicked(character.name) }) {
                         Row(
                             horizontalArrangement = Arrangement.Center
                         ) {
@@ -162,7 +135,7 @@ private fun SearchView(
 private fun Preview() {
     SearchCharactersScreen(
         mutableStateOf(TextFieldValue("")),
-        "Title", {}, listOf(
+        "Title", {}, {}, listOf(
             Character(
                 name = "Harry Potter",
                 gender = Gender.Male,

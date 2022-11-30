@@ -11,7 +11,7 @@ data class Character(
     val dateOfBirth: LocalDate? = null,
     val isWizard: Boolean,
     val ancestry: Ancestry? = null,
-    val eyeColour: String? = null,
+    val eyeColor: String? = null,
     val hairColor: String? = null,
     val wandWood: String? = null,
     val wandCore: String? = null,
