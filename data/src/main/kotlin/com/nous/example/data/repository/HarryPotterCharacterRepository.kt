@@ -3,11 +3,13 @@ package com.nous.example.data.repository
 import com.nous.example.data.api.Api
 import com.nous.example.data.database.CharacterDao
 import com.nous.example.data.ext.toEntity
+import com.nous.example.data.ext.toModel
+import com.nous.example.data.model.CharacterEntity
 import com.nous.example.domain.api.HarryPotterApi
-import com.nous.example.domain.ext.toModel
 import com.nous.example.domain.model.*
 import com.nous.example.domain.repository.CharacterRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOn
 
 internal class HarryPotterCharacterRepository(
@@ -22,20 +24,12 @@ internal class HarryPotterCharacterRepository(
         }
         return api.request(
             callApi = { hpApi.getCharacters() },
-            parseDto = {
-                val entities = map {
-                    it.toEntity()
-                }
-                dao.insert(entities)
-                map { it.toModel() }
-            }
+            parseDto = { parseDto() }
         )
     }
 
-    override suspend fun getCharacter(name: String) = runCatching { dao.getCharacter(name) }.fold(
-        onFailure = { Data.Error(cause = it) },
-        onSuccess = { Data.Success(it) }
-    )
+    override suspend fun getCharacter(name: String) =
+        runCatching { dao.getCharacter(name) }.foldToData()
 
     override suspend fun getCharactersByClassification(classification: Classification): ResultData<List<Character>> {
         val localResult = dao.getCharactersByClassification(classification)
@@ -44,13 +38,7 @@ internal class HarryPotterCharacterRepository(
         }
         return api.request(
             callApi = { hpApi.getCharacters() },
-            parseDto = {
-                val entities = map {
-                    it.toEntity()
-                }
-                dao.insert(entities)
-                filter { it.hogwartsStudent }.map { it.toModel() }
-            }
+            parseDto = { parseDto { it.classification == classification } }
         )
     }
 
@@ -61,14 +49,19 @@ internal class HarryPotterCharacterRepository(
         }
         return api.request(
             callApi = { hpApi.getCharacters() },
-            parseDto = {
-                val entities = map {
-                    it.toEntity()
-                }
-                dao.insert(entities)
-                filter { it.house == house.name }.map { it.toModel() }
-            }
+            parseDto = { parseDto { it.house == house } }
         )
+    }
+
+    private suspend fun List<CharacterDto>.parseDto(predicate: ((CharacterEntity) -> Boolean) = { true }): List<Character> {
+        val entities = map {
+            it.toEntity()
+        }
+        return if (dao.insert(entities).none { it < 0 }) {
+            entities.filter(predicate).map { it.toModel() }
+        } else {
+            error("Database insertion failed")
+        }
     }
 
     override fun search(query: String) = dao.search(query).flowOn(Dispatchers.IO)

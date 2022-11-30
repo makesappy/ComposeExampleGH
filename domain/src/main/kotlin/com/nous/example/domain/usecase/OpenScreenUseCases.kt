@@ -1,6 +1,7 @@
 package com.nous.example.domain.usecase
 
 import com.nous.example.domain.controller.MainNavigationController
+import com.nous.example.domain.ext.encodedAsArgument
 import com.nous.example.domain.model.House
 
 class OpenHomeScreenUseCase(
@@ -71,6 +72,15 @@ class OpenCharacterDetailScreenUseCase(
 ) : SynchronousUseCase<String, Unit> {
 
     override fun invoke(input: String) {
-        navigationController.goToCharacter(input.replace(" ","_"))
+        navigationController.goToCharacter(input.encodedAsArgument)
+    }
+}
+
+class OpenSpellDetailScreenUseCase(
+    private val navigationController: MainNavigationController
+) : SynchronousUseCase<String, Unit> {
+
+    override fun invoke(input: String) {
+        navigationController.goToSpell(input.encodedAsArgument)
     }
 }

@@ -18,12 +18,14 @@ internal fun ByHouseCharactersScreen(house: House) {
     }).withRegisteredLifecycle()
     val textState = remember { mutableStateOf(TextFieldValue("")) }
     val states = viewModel.search(textState.value.text)
-        .collectAsState(initial = viewModel.states.value.characters)
-    SearchCharactersScreen(
+        .collectAsState(initial = viewModel.states.value.data)
+    SearchScreen(
         textFieldState = textState,
         title = house.name,
         onBackClicked = viewModel::navigateBack,
-        onCharacterClicked = viewModel::openCharacterDetail,
-        items = states.value
+        onRowClicked = viewModel::openDetail,
+        items = states.value,
+        name = { it.name },
+        imageUrl = { it.imageUrl }
     )
 }

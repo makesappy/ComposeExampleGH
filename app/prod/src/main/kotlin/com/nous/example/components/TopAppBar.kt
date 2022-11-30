@@ -10,19 +10,26 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import com.nous.example.theme.CustomTheme
 
 @Composable
-internal fun CustomTopAppBar(title: String, onBackClicked: () -> Unit) {
+internal fun CustomTopAppBar(
+    title: String,
+    onBackClicked: () -> Unit,
+    contentColor: Color = CustomTheme.colors.backgroundPrimary,
+    iconColor: Color = CustomTheme.colors.primary
+) {
     TopAppBar(
         title = {
             CustomText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(end = CustomTheme.dimensions.spaceL),
+                    .padding(end = CustomTheme.dimensions.spaceXXL),
                 text = title.uppercase(),
                 style = CustomTheme.typography.header4,
+                color = iconColor,
                 textAlign = TextAlign.Center
             )
         },
@@ -33,13 +40,13 @@ internal fun CustomTopAppBar(title: String, onBackClicked: () -> Unit) {
             ) {
                 Icon(
                     Icons.Default.ArrowBack,
-                    tint = CustomTheme.colors.primary,
+                    tint = iconColor,
                     contentDescription = null
                 )
             }
         },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = CustomTheme.colors.backgroundPrimary
+            containerColor = contentColor
         ),
     )
 }

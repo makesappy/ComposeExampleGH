@@ -132,6 +132,7 @@ object gradleDependencies {
             val coil = "io.coil-kt:coil" version versions.coil
             val composeReordable = "org.burnoutcrew.composereorderable:reorderable" version "0.9.2"
             val material = "com.google.android.material:material" version "1.7.0"
+            val cloudy = "com.github.skydoves:cloudy" version "0.1.1"
 
             object compose {
                 internal val runtime = "androidx.compose.runtime:runtime" version versions.compose

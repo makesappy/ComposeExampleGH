@@ -33,11 +33,15 @@ val domainModule = module {
     factoryOf(::OpenCharactersByHouseScreenUseCase)
     factoryOf(::GetCharacterByNameUseCase)
     factoryOf(::OpenCharacterDetailScreenUseCase)
+    factoryOf(::OpenSpellDetailScreenUseCase)
+    factoryOf(::GetSpellByNameUseCase)
 
-    single { getRetrofit().create(HarryPotterApi::class.java) }
+    single { getRetrofit("https://hp-api.onrender.com/").create(HarryPotterApi::class.java) }
 }
 
-fun getRetrofit(): Retrofit {
+fun getRetrofit(
+    baseUrl: String
+): Retrofit {
     val okHttpClient = OkHttpClient.Builder().apply {
         connectTimeout(15L, TimeUnit.SECONDS)
         writeTimeout(15L, TimeUnit.SECONDS)
@@ -52,7 +56,7 @@ fun getRetrofit(): Retrofit {
 
     return Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://hp-api.onrender.com/")
+        .baseUrl(baseUrl)
         .addConverterFactory(
             json.asConverterFactory("application/json".toMediaType())
         )

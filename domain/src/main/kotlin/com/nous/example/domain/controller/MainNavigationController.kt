@@ -14,5 +14,6 @@ interface MainNavigationController {
     fun goToSpells()
     fun goToHouses()
     fun goToCharacter(name: String)
+    fun goToSpell(name: String)
     fun goBack()
 }

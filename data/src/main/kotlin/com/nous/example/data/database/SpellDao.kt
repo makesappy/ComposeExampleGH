@@ -17,6 +17,9 @@ internal interface SpellDao {
     @Query("SELECT * FROM spell")
     suspend fun getSpells(): List<Spell>
 
+    @Query("SELECT * FROM spell WHERE name = :name")
+    suspend fun getSpell(name: String): Spell
+
     @Query("SELECT * FROM spell WHERE name LIKE '%' || :name || '%'")
     fun search(name: String): Flow<List<Spell>>
 }

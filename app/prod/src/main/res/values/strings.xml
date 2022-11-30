@@ -10,8 +10,8 @@
     <string name="error_general_body">Something went wrong, please try again later</string>
     <string name="error_app_version">App Version: %s</string>
     <string name="all_characters_category_title">All characters</string>
-    <string name="students_category_title">Characters who are Hogwarts students during the book series</string>
-    <string name="staff_category_title">Characters who are Hogwarts staff during the book series</string>
+    <string name="students_category_title">Hogwarts students</string>
+    <string name="staff_category_title">Hogwarts staff</string>
     <string name="houses_category_title">Characters in a certain house</string>
     <string name="spells_category_title">All spells</string>
     <string name="home_title">Categories</string>

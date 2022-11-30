@@ -28,25 +28,37 @@ import com.google.accompanist.placeholder.placeholder
 import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
 
+private data class LoadingImageState(
+    val url: String?,
+    val isLoading: Boolean
+)
+
 @Composable
 internal fun LoadingAsyncImage(
     url: String?,
     modifier: Modifier,
 ) {
-    val urlState = remember {
-        mutableStateOf(value = url)
+    val state = remember {
+        mutableStateOf(
+            LoadingImageState(
+                url = "https://picsum.photos/200/200",
+                isLoading = false
+            )
+        )
     }
-    if (urlState.value == null) {
+    if (state.value.url == null) {
         Image(
             painter = painterResource(id = R.drawable.placeholder),
             contentDescription = null,
-            modifier = modifier.clip(CircleShape)
+            contentScale = ContentScale.Crop,
+            modifier = modifier
+                .clip(CircleShape)
         )
     } else {
-        val isLoading = remember { mutableStateOf(false) }
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(data = url)
+                // FIXME: temporary solution to substitute original image url while HP heroku is down. REV:30-11-2022
+                .data(data = state.value.url)
                 .apply(block = fun ImageRequest.Builder.() {
                     transformations(
                         CircleCropTransformation()
@@ -56,17 +68,16 @@ internal fun LoadingAsyncImage(
             contentScale = ContentScale.Fit,
             alignment = Alignment.Center,
             onLoading = {
-                isLoading.value = true
+                state.value = state.value.copy(isLoading = true)
             },
             onSuccess = {
-                isLoading.value = false
+                state.value = state.value.copy(isLoading = false)
             },
             onError = {
-                isLoading.value = false
-                urlState.value = null
+                state.value = state.value.copy(isLoading = false, url = null)
             },
             modifier = modifier.loading(
-                isLoading = isLoading.value,
+                isLoading = state.value.isLoading,
                 shape = CircleShape
             )
         )

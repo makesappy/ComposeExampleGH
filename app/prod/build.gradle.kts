@@ -19,6 +19,7 @@ dependencies {
     implementation(gradleDependencies.libs.ui.accompanist.placeholder)
     implementation(gradleDependencies.libs.ui.compose.activity)
     implementation(gradleDependencies.libs.ui.compose.navigation)
+    implementation(gradleDependencies.libs.ui.cloudy)
     implementation(gradleDependencies.libs.bundles.ui.compose)
     implementation(gradleDependencies.libs.licences.aboutLibrariesCore)
     implementation(gradleDependencies.libs.licences.aboutLibrariesCompose)

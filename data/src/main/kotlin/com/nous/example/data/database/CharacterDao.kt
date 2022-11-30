@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 internal interface CharacterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(characters: List<CharacterEntity>)
+    suspend fun insert(characters: List<CharacterEntity>) : List<Long>
 
     @Query("SELECT * FROM character")
     suspend fun getCharacters(): List<Character>

@@ -51,3 +51,8 @@ inline fun <T> ResultData<T>.onSuccess(block: (T) -> Unit): ResultData<T> {
     }
     return this
 }
+
+fun <T> Result<T>.foldToData() = fold(
+    onFailure = { Data.Error(it) },
+    onSuccess = { Data.Success(it) }
+)

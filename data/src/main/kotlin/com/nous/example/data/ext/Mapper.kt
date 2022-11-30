@@ -44,3 +44,25 @@ internal fun CharacterDto.toEntity() = CharacterEntity(
 )
 
 internal fun Spell.toEntity() = SpellEntity(name, description)
+
+internal fun CharacterEntity.toModel() = Character(
+    name = name,
+    alternateNames = alternateNames,
+    species = species,
+    gender = gender,
+    house = house,
+    dateOfBirth = dateOfBirth,
+    isWizard = isWizard,
+    ancestry = ancestry,
+    eyeColor = eyeColour,
+    hairColor = hairColor,
+    wandWood = wandWood,
+    wandCore = wandCore,
+    wandLength = wandLength,
+    patronus = patronus,
+    classification = classification,
+    actor = actor,
+    alternateActors = alternateActors,
+    isAlive = isAlive,
+    imageUrl = imageUrl
+)
