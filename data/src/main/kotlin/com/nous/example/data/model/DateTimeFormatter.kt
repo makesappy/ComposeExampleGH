@@ -1,4 +1,4 @@
-package com.nous.example.domain.model
+package com.nous.example.data.model
 
 import java.time.format.DateTimeFormatter
 

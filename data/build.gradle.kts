@@ -18,4 +18,6 @@ dependencies {
     implementation(gradleDependencies.libs.database.sqlCipher)
 
     ksp(gradleDependencies.libs.database.room.compiler)
+
+    testImplementation(gradleDependencies.libs.bundles.test.unitTest)
 }

@@ -18,11 +18,11 @@ import com.nous.example.common.withRegisteredLifecycle
 import com.nous.example.components.CustomText
 import com.nous.example.components.CustomTopAppBar
 import com.nous.example.components.LoadingAsyncImage
+import com.nous.example.data.model.dateTimeFormatter
 import com.nous.example.domain.ext.decodedAsArgument
 import com.nous.example.domain.model.Character
 import com.nous.example.domain.model.Classification
 import com.nous.example.domain.model.Gender
-import com.nous.example.domain.model.dateTimeFormatter
 import com.nous.example.presentation.CharacterDetailScreenViewModel
 import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme

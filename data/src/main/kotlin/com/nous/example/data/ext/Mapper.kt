@@ -3,6 +3,7 @@ package com.nous.example.data.ext
 import com.nous.example.data.model.CharacterDto
 import com.nous.example.data.model.CharacterEntity
 import com.nous.example.data.model.SpellEntity
+import com.nous.example.data.model.dateTimeFormatter
 import com.nous.example.domain.ext.capitalize
 import com.nous.example.domain.model.*
 import java.time.LocalDate
