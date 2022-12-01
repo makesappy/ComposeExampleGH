@@ -1,7 +1,7 @@
-package com.nous.example.domain.model
+package com.nous.example.data.model
 
 @kotlinx.serialization.Serializable
-data class CharacterDto(
+internal data class CharacterDto(
     val name: String,
     val alternate_names: List<String>,
     val species: String,

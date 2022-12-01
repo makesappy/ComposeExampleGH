@@ -1,15 +1,15 @@
 package com.nous.example.data.repository
 
 import com.nous.example.data.api.Api
+import com.nous.example.data.api.HarryPotterApi
 import com.nous.example.data.database.CharacterDao
 import com.nous.example.data.ext.toEntity
 import com.nous.example.data.ext.toModel
+import com.nous.example.data.model.CharacterDto
 import com.nous.example.data.model.CharacterEntity
-import com.nous.example.domain.api.HarryPotterApi
 import com.nous.example.domain.model.*
 import com.nous.example.domain.repository.CharacterRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flowOn
 
 internal class HarryPotterCharacterRepository(

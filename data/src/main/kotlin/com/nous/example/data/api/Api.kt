@@ -47,12 +47,6 @@ internal class Api {
                 cause = NetworkErrorException("Unable to proceed request.", e),
                 type = Data.Error.Type.MissingInternet
             )
-        } catch (e: ConnectException) {
-            Log.d(javaClass.simpleName, "executeRequest failure: ${e.localizedMessage}")
-            Data.Error(
-                cause = NetworkErrorException("Unable to proceed request.", e),
-                type = Data.Error.Type.MissingInternet
-            )
         } catch (e: Exception) {
             Log.d(javaClass.simpleName, "executeRequest failure: ${e.localizedMessage}")
             Data.Error(

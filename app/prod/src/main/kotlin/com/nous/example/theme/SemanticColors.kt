@@ -50,7 +50,7 @@ internal fun customLightColors() = CustomSemanticColors(
     textPrimary = Color(0xFF1E1E1E),
     textSecondary = Color(0xFF868585),
     backgroundPrimary = Color(0xFFFFFFFF),
-    backgroundSecondary = Color(0xFFDADADA)
+    backgroundSecondary = Color(0xFFDADADA),
 )
 
 internal fun customDarkColors() = CustomSemanticColors(

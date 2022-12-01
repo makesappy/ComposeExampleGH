@@ -14,6 +14,7 @@ android {
         targetSdk = ProjectConfiguration.Android.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "DEBUGGABLE"
     }
 
     buildTypes {

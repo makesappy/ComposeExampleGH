@@ -17,6 +17,7 @@ import com.nous.example.components.SmallCircularProgressIndicator
 import com.nous.example.presentation.SplashScreenViewModel
 import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
+import com.nous.example.theme.customLightColors
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -33,7 +34,7 @@ private fun SplashScreenImpl() {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .background(CustomTheme.colors.primary)
+            .background(customLightColors().primary)
     ) {
         val (logoImage, progressIndicatorBox) = createRefs()
 

@@ -14,6 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:targetApi="31">
+
+        <!-- Enable profiling by macrobenchmark -->
+        <!-- Note: Android Studio displays `Cannot convert string ${isProfilingEnabled} to target class boolean` but it works correctly -->
+        <profileable
+            android:shell="${isProfilingEnabled}"
+            tools:targetApi="q" />
         <activity
             android:name="com.nous.example.system.MainActivity"
             android:exported="true"

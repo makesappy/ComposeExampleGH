@@ -10,6 +10,7 @@ dependencies {
     implementation(gradleDependencies.libs.androidx.securityCrypto)
 
     implementation(gradleDependencies.libs.bundles.networking.retrofit)
+    implementation(gradleDependencies.libs.networking.okHttp.loggingInterceptor)
     api(gradleDependencies.libs.networking.retrofit2.retrofit)
 
     implementation(gradleDependencies.libs.database.room.ktx)

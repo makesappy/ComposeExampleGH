@@ -32,21 +32,19 @@ class AndroidAppPlugin : Plugin<Project> by local plugin {
 
         buildTypes {
             release {
-                with(ProjectConfiguration) {
-                    isDebuggable = false
-                    isMinifyEnabled = true
-                    isShrinkResources = true
-                }
+                isDebuggable = false
+                isMinifyEnabled = true
+                isShrinkResources = true
+                manifestPlaceholders["isProfilingEnabled"] = false
 
                 proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             }
 
             debug {
-                with(ProjectConfiguration) {
-                    isDebuggable = true
-                    isMinifyEnabled = false
-                    isShrinkResources = false
-                }
+                isDebuggable = true
+                isMinifyEnabled = false
+                isShrinkResources = false
+                manifestPlaceholders["isProfilingEnabled"] = true
 
                 proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             }
@@ -55,6 +53,7 @@ class AndroidAppPlugin : Plugin<Project> by local plugin {
                 initWith(getByName("release"))
                 signingConfig = signingConfigs.getByName("debug")
                 matchingFallbacks += listOf("release")
+                manifestPlaceholders["isProfilingEnabled"] = true
             }
         }
 

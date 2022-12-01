@@ -1,7 +1,7 @@
-package com.nous.example.domain.model
+package com.nous.example.data.model
 
 @kotlinx.serialization.Serializable
-data class WandDto(
+internal data class WandDto(
     val wood: String,
     val core: String,
     val length: Double?
