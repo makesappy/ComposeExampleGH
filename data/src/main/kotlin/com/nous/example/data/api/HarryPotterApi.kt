@@ -1,12 +1,11 @@
-package com.nous.example.domain.api
+package com.nous.example.data.api
 
-import com.nous.example.domain.model.CharacterDto
+import com.nous.example.data.model.CharacterDto
 import com.nous.example.domain.model.Spell
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 
-interface HarryPotterApi {
+internal interface HarryPotterApi {
     @GET("api/characters")
     suspend fun getCharacters(): Response<List<CharacterDto>>
 

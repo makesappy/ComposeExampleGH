@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.nous.example.data.api.Api
+import com.nous.example.data.api.HarryPotterApi
 import com.nous.example.data.controller.AndroidOverlayErrorController
 import com.nous.example.data.controller.AndroidStringResourceController
 import com.nous.example.data.controller.AppInitializerController
@@ -19,10 +21,16 @@ import com.nous.example.domain.controller.OverlayErrorController
 import com.nous.example.domain.controller.StringResourceController
 import com.nous.example.domain.repository.CharacterRepository
 import com.nous.example.domain.repository.SpellRepository
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import retrofit2.Retrofit
 import java.security.KeyStore
+import java.util.concurrent.TimeUnit
 
 val dataModule = module {
     singleOf(::GlobalNavigationController) bind MainNavigationController::class
@@ -53,6 +61,7 @@ val dataModule = module {
             ApplicationDatabase::class
         )
     }
+    single { getRetrofit("https://hp-api.onrender.com/").create(HarryPotterApi::class.java) }
 }
 
 private fun provideSharedPreferences(context: Context): SharedPreferences {
@@ -80,4 +89,28 @@ private fun provideSharedPreferences(context: Context): SharedPreferences {
 
         getSharedPrefs()
     }.getOrThrow()
+}
+
+fun getRetrofit(
+    baseUrl: String
+): Retrofit {
+    val okHttpClient = OkHttpClient.Builder().apply {
+        connectTimeout(15L, TimeUnit.SECONDS)
+        writeTimeout(15L, TimeUnit.SECONDS)
+        readTimeout(15L, TimeUnit.SECONDS)
+    }.addInterceptor(HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }).build()
+
+    val json = Json {
+        ignoreUnknownKeys = true
+    }
+
+    return Retrofit.Builder()
+        .client(okHttpClient)
+        .baseUrl(baseUrl)
+        .addConverterFactory(
+            json.asConverterFactory("application/json".toMediaType())
+        )
+        .build()
 }

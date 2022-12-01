@@ -1,9 +1,9 @@
 package com.nous.example.data.repository
 
 import com.nous.example.data.api.Api
+import com.nous.example.data.api.HarryPotterApi
 import com.nous.example.data.database.SpellDao
 import com.nous.example.data.ext.toEntity
-import com.nous.example.domain.api.HarryPotterApi
 import com.nous.example.domain.model.Data
 import com.nous.example.domain.model.ResultData
 import com.nous.example.domain.model.Spell

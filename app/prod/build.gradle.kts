@@ -25,6 +25,7 @@ dependencies {
     implementation(gradleDependencies.libs.licences.aboutLibrariesCompose)
     implementation(gradleDependencies.libs.theme.googleFonts)
     implementation(gradleDependencies.libs.ui.accompanist.systemUiController)
+    implementation(gradleDependencies.libs.ui.blurry)
 
     debugImplementation(gradleDependencies.libs.debug.leakCanary)
 

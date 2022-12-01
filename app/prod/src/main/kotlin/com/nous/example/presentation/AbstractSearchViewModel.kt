@@ -31,6 +31,6 @@ internal abstract class AbstractSearchViewModel<T>(
     fun navigateBack() = onBackClicked()
 
     data class State<T>(
-        val data: List<T> = listOf()
+        val data: List<T> = listOf(),
     ) : AbstractViewModel.State
 }
