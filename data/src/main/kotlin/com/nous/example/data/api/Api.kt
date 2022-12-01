@@ -1,13 +1,11 @@
 package com.nous.example.data.api
 
-import android.util.Log
 import com.nous.example.domain.model.Data
 import com.nous.example.domain.model.ResultData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.net.ConnectException
-import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 internal class Api {
@@ -42,13 +40,17 @@ internal class Api {
         try {
             Data.Success(withContext(Dispatchers.IO) { callApi() })
         } catch (e: UnknownHostException) {
-            Log.d(javaClass.simpleName, "executeRequest failure: ${e.localizedMessage}")
             Data.Error(
                 cause = NetworkErrorException("Unable to proceed request.", e),
                 type = Data.Error.Type.MissingInternet
             )
-        } catch (e: Exception) {
-            Log.d(javaClass.simpleName, "executeRequest failure: ${e.localizedMessage}")
+        } catch (e: ConnectException) {
+            Data.Error(
+                cause = NetworkErrorException("Connection failed.", e),
+                type = Data.Error.Type.MissingInternet
+            )
+        }
+        catch (e: Exception) {
             Data.Error(
                 cause = NetworkErrorException("Unable to proceed request.", e),
                 type = Data.Error.Type.General
