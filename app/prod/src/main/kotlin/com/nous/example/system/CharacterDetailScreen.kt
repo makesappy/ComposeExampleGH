@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nous.example.common.withRegisteredLifecycle
@@ -73,7 +74,7 @@ private fun CharacterDetailScreenImpl(
                     CustomRow(titleResId = R.string.species_title, text = it)
                 }
                 CustomRow(titleResId = R.string.gender_title, text = gender.name)
-                house?.let { CustomRow(titleResId = R.string.home_title, text = it.name) }
+                house?.let { CustomRow(titleResId = R.string.house_title, text = it.name) }
                 dateOfBirth?.let {
                     CustomRow(
                         titleResId = R.string.dob_title,
@@ -138,7 +139,10 @@ private fun CustomRow(
                 text = stringResource(id = titleResId).uppercase(),
                 style = CustomTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
             )
-            CustomText(text = text.uppercase(), style = CustomTheme.typography.body1)
+            CustomText(
+                text = text.uppercase(),
+                style = CustomTheme.typography.body1.copy(textAlign = TextAlign.End)
+            )
         }
         Divider()
     }
