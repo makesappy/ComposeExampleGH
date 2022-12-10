@@ -13,6 +13,8 @@ internal class ByHouseScreenViewModel(
     private val house: House
 ) : AbstractSearchViewModel<Character>(showOverlayError, onBackClicked) {
     override suspend fun get() = getCharactersByHouse(house)
-    override fun search(query: String) = searchCharacter(query)
+    override fun search(query: String) =
+        searchCharacter(SearchCharacterUseCase.Param(query) { it.house == house })
+
     override fun openDetail(name: String) = openCharacterDetailScreen(name)
 }

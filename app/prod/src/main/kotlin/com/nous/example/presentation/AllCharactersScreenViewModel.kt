@@ -11,6 +11,6 @@ internal class AllCharactersScreenViewModel(
     private val openCharacterDetailScreen: OpenCharacterDetailScreenUseCase,
 ) : AbstractSearchViewModel<Character>(showOverlayError, onBackClicked) {
     override suspend fun get() = getCharactersUseCase()
-    override fun search(query: String) = searchCharacter(query)
+    override fun search(query: String) = searchCharacter(SearchCharacterUseCase.Param(query))
     override fun openDetail(name: String) = openCharacterDetailScreen(name)
 }

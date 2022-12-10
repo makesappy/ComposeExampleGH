@@ -29,7 +29,6 @@ import com.nous.example.prod.R
 import com.nous.example.theme.CustomTheme
 
 private data class LoadingImageState(
-    val url: String?,
     val isLoading: Boolean
 )
 
@@ -41,12 +40,11 @@ internal fun LoadingAsyncImage(
     val state = remember {
         mutableStateOf(
             LoadingImageState(
-                url = "https://picsum.photos/200/200",
                 isLoading = false
             )
         )
     }
-    if (state.value.url == null) {
+    if (url == null) {
         Image(
             painter = painterResource(id = R.drawable.placeholder),
             contentDescription = null,
@@ -57,8 +55,7 @@ internal fun LoadingAsyncImage(
     } else {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                // FIXME: temporary solution to substitute original image url while HP heroku is down. REV:30-11-2022
-                .data(data = state.value.url)
+                .data(data = url)
                 .apply(block = fun ImageRequest.Builder.() {
                     transformations(
                         CircleCropTransformation()
@@ -74,7 +71,7 @@ internal fun LoadingAsyncImage(
                 state.value = state.value.copy(isLoading = false)
             },
             onError = {
-                state.value = state.value.copy(isLoading = false, url = null)
+                state.value = state.value.copy(isLoading = false)
             },
             modifier = modifier.loading(
                 isLoading = state.value.isLoading,
