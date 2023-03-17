@@ -83,7 +83,4 @@ internal object CustomTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalCustomColors.current
-
-    var isThemeInDarkMode: Boolean = false
-        internal set
 }

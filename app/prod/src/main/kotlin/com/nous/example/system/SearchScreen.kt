@@ -1,5 +1,6 @@
 package com.nous.example.system
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -140,6 +141,7 @@ private fun SearchView(
     )
 }
 
+@SuppressLint("UnrememberedMutableState") // for preview only
 @Preview
 @Composable
 private fun Preview() {

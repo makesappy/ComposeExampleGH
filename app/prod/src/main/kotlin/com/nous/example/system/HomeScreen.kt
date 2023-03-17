@@ -41,10 +41,12 @@ private fun HomeScreenImpl(
         containerColor = CustomTheme.colors.secondary
     ) {
         LazyColumn(
-            modifier = Modifier.padding(
-                horizontal = CustomTheme.dimensions.spaceXS,
-                vertical = CustomTheme.dimensions.spaceXS
-            )
+            modifier = Modifier
+                .padding(it)
+                .padding(
+                    horizontal = CustomTheme.dimensions.spaceXS,
+                    vertical = CustomTheme.dimensions.spaceXS
+                )
         ) {
             item {
                 CustomText(

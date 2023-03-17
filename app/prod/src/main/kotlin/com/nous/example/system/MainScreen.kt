@@ -8,7 +8,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.nous.example.common.ContentOrErrorEffect
 import com.nous.example.common.withRegisteredLifecycle
-import com.nous.example.components.LoadingDialog
 import com.nous.example.presentation.MainViewModel
 import com.nous.example.theme.CustomTheme
 import org.koin.androidx.compose.getViewModel
@@ -39,9 +38,6 @@ private fun MainScreenImpl(viewModel: MainViewModel) {
             Screens(
                 navController = navController, modifier = Modifier.fillMaxSize()
             )
-        }
-        if (state.loadingState.isVisible) {
-            LoadingDialog()
         }
     }
 }

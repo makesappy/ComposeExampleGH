@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ExampleApp</string>
+    <string name="error_app_version">App Version: %s</string>
+    <string name="error_no_internet_header">No internet</string>
+    <string name="error_no_internet_body">Your phone is not connected to the internet. Check your network connection and retry.</string>
+    <string name="global_ok">OK</string>
+    <string name="global_loading">Loading…</string>
+    <string name="error_general_body">"An error occurred while carrying out your request. Please retry later."</string>
+    <string name="error_general_header">Unexpected issue</string>
+    <string name="error_timeout_body">"The server is taking too long to respond. Retry later. If this issue persists, please contact the Info Call line. "</string>
+    <string name="error_timeout_header">Connection timeout</string>
+    <string name="all_characters_category_title">All characters</string>
+    <string name="alternate_names_title">Alternate names</string>
+    <string name="species_title">Species</string>
+    <string name="gender_title">Gender</string>
+    <string name="house_title">House</string>
+    <string name="dob_title">Date of birth</string>
+    <string name="wizard_title">Is wizard</string>
+    <string name="ancestry_title">Ancestry</string>
+    <string name="eye_color_title">Eye color</string>
+    <string name="hair_color_title">Hair color</string>
+    <string name="wand_wood_title">Wand wood</string>
+    <string name="wand_core_title">Wand core</string>
+    <string name="wand_length_title">Wand length</string>
+    <string name="patronus_title">Patronus</string>
+    <string name="classification_title">Classification</string>
+    <string name="actor_title">Actor</string>
+    <string name="alternate_actors_title">Alternate actors</string>
+    <string name="alive_title">Is alive</string>
+    <string name="yes_title">Yes</string>
+    <string name="no_title">No</string>
+    <string name="home_title">Categories</string>
+    <string name="houses_category_title">Characters in certain house</string>
+    <string name="spells_category_title">All spells</string>
+    <string name="staff_category_title">Hogwarts staff</string>
+    <string name="students_category_title">Hogwarts students</string>
+</resources>

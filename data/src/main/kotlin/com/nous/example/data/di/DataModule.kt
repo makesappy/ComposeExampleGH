@@ -8,7 +8,6 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.nous.example.data.api.Api
 import com.nous.example.data.api.HarryPotterApi
 import com.nous.example.data.controller.AndroidOverlayErrorController
-import com.nous.example.data.controller.AndroidStringResourceController
 import com.nous.example.data.controller.AppInitializerController
 import com.nous.example.data.controller.GlobalNavigationController
 import com.nous.example.data.database.ApplicationDatabase
@@ -18,7 +17,6 @@ import com.nous.example.data.repository.HarryPotterSpellRepository
 import com.nous.example.domain.controller.InitializerController
 import com.nous.example.domain.controller.MainNavigationController
 import com.nous.example.domain.controller.OverlayErrorController
-import com.nous.example.domain.controller.StringResourceController
 import com.nous.example.domain.repository.CharacterRepository
 import com.nous.example.domain.repository.SpellRepository
 import kotlinx.serialization.json.Json
@@ -35,7 +33,6 @@ import java.util.concurrent.TimeUnit
 val dataModule = module {
     singleOf(::GlobalNavigationController) bind MainNavigationController::class
     singleOf(::AppInitializerController) bind InitializerController::class
-    singleOf(::AndroidStringResourceController) bind StringResourceController::class
     singleOf(::AndroidOverlayErrorController) bind OverlayErrorController::class
     singleOf(::Api)
     singleOf(::RoomDatabaseFactory)

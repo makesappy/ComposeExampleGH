@@ -34,15 +34,6 @@ internal class MainViewModel(
 
     data class State(
         val navigationEvent: NavigationEvent? = ForwardNavigationEvent(Route.Initial),
-        val themeType: ThemeType = ThemeType.Automatic,
         val error: Data.Error? = null,
-        val loadingState: LoadingState = LoadingState()
-    ) : AbstractViewModel.State {
-
-        data class LoadingState(val message: String? = null, val isVisible: Boolean = false)
-
-        companion object {
-            fun isInitialSelected(route: Route?) = route == Route.Initial
-        }
-    }
+    ) : AbstractViewModel.State
 }
